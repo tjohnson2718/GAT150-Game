@@ -45,6 +45,9 @@ public:
 
 int main(int argc, char* argv[])
 {
+	INFO_LOG;
+
+
 	kiko::MemoryTracker::Initialize();
 	std::unique_ptr<int> up = std::make_unique<int>(10);
 
@@ -83,7 +86,7 @@ int main(int argc, char* argv[])
 	bool quit = false;
 	while (!quit)
 	{
-		kiko::g_time.Tick();
+ 		kiko::g_time.Tick();
 
 		kiko::g_audioSystem.Update();
 

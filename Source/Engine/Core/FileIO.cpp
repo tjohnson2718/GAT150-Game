@@ -15,6 +15,11 @@ namespace kiko
 		return ec.value() == 0;
 	}
 
+	std::string getFileName(const std::filesystem::path& path)
+	{
+		return path.filename().string();
+	}
+
 	bool fileExists(const std::filesystem::path& path)
 	{
 		
