@@ -1,4 +1,5 @@
 #include "FileIO.h"
+#include "Logger.h"
 #include <fstream>
 
 namespace kiko
@@ -35,7 +36,11 @@ namespace kiko
 
 	bool readFile(const std::filesystem::path& path, std::string& buffer)
 	{
-		if (!fileExists(path)) return false;
+		if (!fileExists(path))
+		{
+			WARNING_LOG;
+			return false;
+		}
 
 		size_t size;
 		if (!getFileSize(path, size)) return false;
