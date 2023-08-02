@@ -123,7 +123,6 @@ int main(int argc, char* argv[])
 
 		game->Draw(kiko::g_renderer);
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
-		text->Draw(kiko::g_renderer, 400, 300);
 
 		kiko::g_renderer.EndFrame();
 	}

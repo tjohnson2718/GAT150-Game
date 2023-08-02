@@ -28,9 +28,9 @@
 bool SpaceGame::Initialize()
 {
 	//Text
-	std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("font.tff", 24);
+	/*std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("font.tff", 24);
 	std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
-	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
+	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });*/
 
 
 	// Audio
