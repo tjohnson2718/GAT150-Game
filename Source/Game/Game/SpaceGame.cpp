@@ -22,11 +22,15 @@
 #include "Renderer/Text.h"
 
 //Include font and text
+#include "Renderer/Font.h"
+#include "Renderer/Text.h"
 
 bool SpaceGame::Initialize()
 {
-	// font and text
-	
+	//Text
+	std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("font.tff", 24);
+	std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
+	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
 
 
 	// Audio

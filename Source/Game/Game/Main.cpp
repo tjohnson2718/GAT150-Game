@@ -36,7 +36,7 @@ public:
 	{
 		renderer.DrawPoint(m_pos.x, m_pos.y);
 	}
-
+	
 public:
 	kiko::vec2 m_pos;
 	kiko::vec2 m_vel;
@@ -45,7 +45,11 @@ public:
 
 int main(int argc, char* argv[])
 {
-	INFO_LOG;
+	//int j = 0;
+
+	//ASSERT_LOG(j, "pointer is null.")
+
+	INFO_LOG("hello world")
 
 
 	kiko::MemoryTracker::Initialize();
@@ -67,10 +71,7 @@ int main(int argc, char* argv[])
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
 	game->Initialize();
 
-	//Text
-	/*std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("font.tff", 24);
-	std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
-	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });*/
+	
 
 	vector<Star> stars; 
 
@@ -122,7 +123,7 @@ int main(int argc, char* argv[])
 
 		game->Draw(kiko::g_renderer);
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
-		//text->Draw(kiko::g_renderer, 400, 300);
+		text->Draw(kiko::g_renderer, 400, 300);
 
 		kiko::g_renderer.EndFrame();
 	}

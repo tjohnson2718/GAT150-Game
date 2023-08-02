@@ -30,6 +30,7 @@ namespace kiko
 		int GetHeight() const { return m_height; }
 
 		friend class Text;
+		friend class Texture;
 		
 
 	private:
