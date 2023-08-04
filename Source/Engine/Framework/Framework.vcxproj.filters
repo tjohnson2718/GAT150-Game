@@ -16,6 +16,9 @@
     <ClCompile Include="Emitter.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -31,6 +34,12 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Emitter.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
