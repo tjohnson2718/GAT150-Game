@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "SDL2-2.28.0/include/SDL_ttf.h"
 #include "SDL2-2.28.0/include/SDL_image.h"
+#include "Texture.h"
 
 namespace kiko
 {
@@ -66,6 +67,19 @@ namespace kiko
 	void Renderer::DrawPoint(float x, float y)
 	{
 		SDL_RenderDrawPointF(m_renderer, x, y);
+	}
+	void Renderer::DrawTexture(Texture* texture, float x, float y, float angle, float imgScaleX, float imgScaleY)
+	{
+		vec2 size = texture->GetSize();
+
+		SDL_Rect dest;
+		dest.x = static_cast<int>(x);
+		dest.y = static_cast<int>(y);
+
+		dest.w = static_cast<int>(size.x * imgScaleX); // scale x determined here
+		dest.h = static_cast<int>(size.y * imgScaleY); // scale y determined here
+
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
 	}
 }
 

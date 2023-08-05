@@ -6,6 +6,8 @@
 #include "Enemy.h"
 #include "Audio/AudioSystem.h"
 #include "Framework/Scene.h"
+#include "Framework/ResourceManager.h"
+#include "Renderer/Texture.h"
 
 #include "SpaceGame.h"
 #include "Renderer/ParticleSystem.h"
@@ -71,7 +73,8 @@ int main(int argc, char* argv[])
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
 	game->Initialize();
 
-	
+	//kiko::res_t<kiko::Texture>texture = kiko::g_resources.Get<kiko::Texture>("filename", kiko::g_renderer);
+ 	
 
 	vector<Star> stars; 
 

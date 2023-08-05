@@ -2,6 +2,8 @@
 
 namespace kiko
 {
+    ResourceManager g_resources;
+
     void ResourceManager::Add(const std::string& id, const std::string& filename)
     {
         if (m_resources.find(id) == m_resources.end())
