@@ -18,6 +18,9 @@
 #include "Renderer/ParticleData.h"
 #include "Renderer/ParticleSystem.h"
 
+#include "Framework/Components/SpriteComponent.h"
+#include "Framework/ResourceManager.h"
+
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
 
@@ -72,10 +75,17 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAll();
 
 	{
+		// create player
 		std::unique_ptr<Player> player = std::make_unique<Player>(200.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 6 }, kiko::g_manager.Get("ship.txt"));
 		player->m_tag = "Player";
 		player->m_game = this;
 		m_scene->Add(std::move(player));
+
+		//creat components
+		std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
+		component->m_texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
+		player->AddComponent(std::move(component));
+		// do this same thing for the enemy
 	}
 
 	m_state = eState::Game;
