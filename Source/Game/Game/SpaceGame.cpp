@@ -20,6 +20,7 @@
 
 #include "Framework/Components/SpriteComponent.h"
 #include "Framework/ResourceManager.h"
+#include "Framework/Components/EnginePhysicsComponent.h"
 
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
@@ -74,22 +75,29 @@ void SpaceGame::Update(float dt)
 	case SpaceGame::eState::StartLevel:
 		m_scene->RemoveAll();
 
-	{
-		// create player
-		std::unique_ptr<Player> player = std::make_unique<Player>(200.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 6 }, kiko::g_manager.Get("ship.txt"));
-		player->m_tag = "Player";
-		player->m_game = this;
-		m_scene->Add(std::move(player));
+		{
+			// create player
+			std::unique_ptr<Player> player = std::make_unique<Player>(200.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 6 });
+			player->m_tag = "Player";
+			player->m_game = this;
+			m_scene->Add(std::move(player));
 
-		//creat components
-		std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
-		player->AddComponent(std::move(component));
-		// do this same thing for the enemy
-	}
+			//creat components
 
-	m_state = eState::Game;
-	break;
+			//sprite component
+			std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
+			component->m_texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
+
+			//physics component
+			auto physicsComponent = std::make_unique<kiko::EnginePhysicsComponent>();
+			physicsComponent->m_damping = 0.9f;
+			player->AddComponent(std::move(physicsComponent));
+			player->AddComponent(std::move(component));
+			// do this same thing for the enemy
+		}
+
+		m_state = eState::Game;
+		break;
 
 	case SpaceGame::eState::Game:
 		m_spawnTimer += dt;
@@ -120,7 +128,7 @@ void SpaceGame::Update(float dt)
 		if (m_spawnTimer >= m_spawnTime)
 		{
 			m_spawnTimer = 0;
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(4.0f, 7.0f), kiko::Pi, kiko::Transform{ { kiko::random(800), kiko::random(600) }, kiko::randomf(kiko::TwoPi), 3.0f }, kiko::g_manager.Get("small_enemy.txt"));
+			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(4.0f, 7.0f), kiko::Pi, kiko::Transform{ { kiko::random(800), kiko::random(600) }, kiko::randomf(kiko::TwoPi), 3.0f });
 			enemy->m_tag = "Enemy";
 			enemy->m_game = this;
 			m_scene->Add(move(enemy));

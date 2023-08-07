@@ -13,8 +13,6 @@ namespace kiko
 		Texture() = default;
 		~Texture();
 
-		//missing Create function??
-
 		virtual bool Create(std::string filename, ...) override;
 
 		bool Load(std::string& filename, class Renderer& renderer);

@@ -125,6 +125,7 @@ int main(int argc, char* argv[])
 		}
 
 		game->Draw(kiko::g_renderer);
+
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
 
 		kiko::g_renderer.EndFrame();
