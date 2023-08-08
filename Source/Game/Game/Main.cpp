@@ -1,19 +1,13 @@
 #include "Renderer/Renderer.h"
 #include "Core/Core.h" 
-#include "Renderer/ModelManager.h"
 #include"Input/InputSystem.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Audio/AudioSystem.h"
-#include "Framework/Scene.h"
-#include "Framework/ResourceManager.h"
-#include "Renderer/Texture.h"
 
 #include "SpaceGame.h"
-#include "Renderer/ParticleSystem.h"
 
-#include "Renderer/Font.h"
-#include "Renderer/Text.h"
+#include "Framework/Framework.h"
 
 #include <iostream> 
 #include <vector>
@@ -56,15 +50,13 @@ void print(const std::string& s, const T& container)
 	std::cout << std::endl;
 }
 
-
-
 int main(int argc, char* argv[])
 {
 	//int j = 0;
 
 	//ASSERT_LOG(j, "pointer is null.")
 
-	INFO_LOG("hello world")
+	INFO_LOG("Initialize Engine...")
 
 
 	kiko::MemoryTracker::Initialize();
@@ -86,7 +78,8 @@ int main(int argc, char* argv[])
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
 	game->Initialize();
 
-	//kiko::res_t<kiko::Texture>texture = kiko::g_resources.Get<kiko::Texture>("filename", kiko::g_renderer);
+	//load ship
+	kiko::res_t<kiko::Texture>texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
  	
 
 	vector<Star> stars; 
@@ -138,6 +131,8 @@ int main(int argc, char* argv[])
 		}
 
 		game->Draw(kiko::g_renderer);
+
+		kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
 
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
 

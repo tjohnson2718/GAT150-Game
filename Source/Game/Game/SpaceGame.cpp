@@ -2,32 +2,14 @@
 #include "Player.h"
 #include "Enemy.h"
 
-#include "Framework/Actor.h"
-#include "Framework/Scene.h"
-#include "Framework/Emitter.h"
-#include "Framework/EmitterData.h"
+#include "Framework/Framework.h"
 
 #include "Core/Vector2.h"
 
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
+
 #include "Renderer/Renderer.h"
-#include "Renderer/ModelManager.h"
-
-#include "Renderer/Particle.h"
-#include "Renderer/ParticleData.h"
-#include "Renderer/ParticleSystem.h"
-
-#include "Framework/Components/SpriteComponent.h"
-#include "Framework/ResourceManager.h"
-#include "Framework/Components/EnginePhysicsComponent.h"
-
-#include "Renderer/Font.h"
-#include "Renderer/Text.h"
-
-//Include font and text
-#include "Renderer/Font.h"
-#include "Renderer/Text.h"
 
 bool SpaceGame::Initialize()
 {

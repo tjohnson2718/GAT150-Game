@@ -1,6 +1,7 @@
 #include "Texture.h"
 #include "Renderer.h"
 #include "SDL2-2.28.0/include/SDL_image.h"
+#include "Core/Logger.h"
 
 
 namespace kiko
@@ -18,15 +19,17 @@ namespace kiko
 			// LOG_WARNING
 			return false;
 		}
+
 		m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
 		SDL_FreeSurface(surface);
 		if (!m_texture)
 		{
-			// LOG_WARNING
+			WARNING_LOG("could not create texture" << filename);
 			return false;
 		}
 		return true;
 	}
+
 	vec2 Texture::GetSize()
 	{
 		// ASSERT texture is not null
@@ -35,6 +38,11 @@ namespace kiko
 		SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y);
 		return vec2{ point.x, point.y };
 	}
+
+	//bool Texture::Load(const std::string& filename)
+	//{
+		//return false;
+	//}
 
 	bool Texture::Create(std::string filename, ...)
 	{

@@ -2,7 +2,6 @@
 #include "Framework/Resource.h"
 #include "Core/Vector2.h"
 
-
 struct SDL_Texture;
 
 namespace kiko
@@ -23,12 +22,17 @@ namespace kiko
 
 	private:
 		SDL_Texture* m_texture = nullptr;
+
 	public:
 
-		Texture(SDL_Texture* m_texture) : m_texture(m_texture)
+		/*Texture(SDL_Texture* m_texture) : m_texture(m_texture)
 		{
+			
+		}*/
 
-		}
+
+		// Inherited via Resource
+		//virtual bool Load(const std::string& filename) override;
 
 	};
 }

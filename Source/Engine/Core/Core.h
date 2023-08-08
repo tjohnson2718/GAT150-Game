@@ -1,12 +1,13 @@
 #pragma once
 #include "Logger.h"
-#include "Core/Random.h"
-#include "Core/FileIO.h"
-#include "Core/Memory.h"
-#include "Core/Time.h"
-#include "Core/Color.h"
+#include "Random.h"
+#include "FileIO.h"
+#include "Memory.h"
+#include "Time.h"
+#include "Color.h"
 
 //math
-#include "Core/Vector2.h"
+#include "Color.h"
+#include "Vector2.h"
 #include "Transform.h"
 #include "MathUtils.h"

@@ -1,16 +1,13 @@
+#pragma once
 #include "Player.h"
 #include "Input/InputSystem.h"
 #include "Weapon.h"
-#include "Framework/Scene.h"
 #include "SpaceGame.h"
-#include "Renderer/ParticleSystem.h"
-#include "Framework/Emitter.h"
+#include "Renderer/Renderer.h"
 
-#include "Framework/Components/EnginePhysicsComponent.h"
+#include "Framework/Framework.h"
 
-#include "Framework/Components/SpriteComponent.h"
-#include "Renderer/Texture.h"
-#include "Framework/ResourceManager.h"
+
 void Player::Update(float dt)
 {
 	Actor::Update(dt);
@@ -29,12 +26,10 @@ void Player::Update(float dt)
 	auto physicsComponent = GetComponent<kiko::PhysicsComponent>();
 	physicsComponent->ApplyForce(forward * m_speed * thrust);
 
-
-
-	float thrust = 0;
 	if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_W)) thrust = 1;
 
-	kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(m_transform.rotation);
+	//kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(m_transform.rotation);
+	forward = kiko::vec2{ 0, -1 }.Rotate(m_transform.rotation);
 	m_transform.position += forward * m_speed * thrust * kiko::g_time.GetDeltaTime();
 	m_transform.position.x = kiko::Wrap(m_transform.position.x, (float)kiko::g_renderer.GetWidth());
 	m_transform.position.y = kiko::Wrap(m_transform.position.y, (float)kiko::g_renderer.GetHeight());
@@ -51,10 +46,10 @@ void Player::Update(float dt)
 		component->m_texture = kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);
 		weapon->AddComponent(std::move(component));
 
-		kiko::Transform transform2{ m_transform.position, m_transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
-		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform2);
-		weapon->m_tag = "Player";
-		m_scene->Add(std::move(weapon));
+		//kiko::Transform transform2{ m_transform.position, m_transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+		//std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform2);
+		//weapon->m_tag = "Player";
+		//m_scene->Add(std::move(weapon));
 
 		component = std::make_unique<kiko::SpriteComponent>();
 		component->m_texture = kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);

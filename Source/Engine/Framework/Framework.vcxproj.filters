@@ -75,5 +75,8 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Source\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Framework.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

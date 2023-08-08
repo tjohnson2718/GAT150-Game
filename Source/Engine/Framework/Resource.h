@@ -7,7 +7,6 @@ namespace kiko
 	class Resource
 	{
 	public:
-		virtual bool Load(const std::string& filename) = 0;
 
 		virtual ~Resource() = default;
 
