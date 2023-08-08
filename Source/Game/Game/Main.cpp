@@ -18,6 +18,7 @@
 #include <iostream> 
 #include <vector>
 #include <thread>
+#include <map>
 
 using namespace std;
 
@@ -43,6 +44,18 @@ public:
 	kiko::vec2 m_pos;
 	kiko::vec2 m_vel;
 };
+
+template <typename T>
+void print(const std::string& s, const T& container)
+{
+	std::cout << s << std::endl;
+	for (auto element : container)
+	{
+		std::cout << element << " ";
+	}
+	std::cout << std::endl;
+}
+
 
 
 int main(int argc, char* argv[])

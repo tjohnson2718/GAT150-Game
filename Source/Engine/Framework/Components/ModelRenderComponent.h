@@ -1,4 +1,5 @@
 #pragma once
+#include "Framework/Resource.h"
 #include "RenderComponent.h"
 #include "Renderer/Model.h"
 

@@ -8,6 +8,9 @@
     <Filter Include="Source\Components">
       <UniqueIdentifier>{a6bd72f3-1193-459c-bb3b-d4b09e1a5dd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Resource">
+      <UniqueIdentifier>{5f175066-0c73-43f7-aa06-ae0555001bf5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp">
@@ -19,9 +22,6 @@
     <ClCompile Include="Emitter.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Components\ModelRenderComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
@@ -30,6 +30,9 @@
     </ClCompile>
     <ClCompile Include="Components\EnginePhysicsComponent.cpp">
       <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,12 +49,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Emitter.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Components\Component.h">
@@ -71,6 +68,12 @@
     </ClInclude>
     <ClInclude Include="Components\EnginePhysicsComponent.h">
       <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Source\Resource</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

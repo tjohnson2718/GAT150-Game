@@ -26,7 +26,7 @@ namespace kiko
 	{
 		if (m_resources.find(filename) != m_resources.end())
 		{
-			return std::dynamic_pointer_cast<T>(m_resources(filename));
+			return std::dynamic_pointer_cast<T>(m_resources[filename]);
 		}
 
 		res_t<T> resource = std::make_shared<T>();

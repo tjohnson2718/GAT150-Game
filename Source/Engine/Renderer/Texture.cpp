@@ -9,6 +9,7 @@ namespace kiko
 	{
 		if (m_texture) SDL_DestroyTexture(m_texture);
 	}
+
 	bool Texture::Load(std::string& filename, Renderer& renderer)
 	{
 		SDL_Surface* surface = IMG_Load(filename.c_str());
