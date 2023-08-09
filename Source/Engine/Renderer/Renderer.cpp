@@ -7,7 +7,7 @@ namespace kiko
 {
 	Renderer g_renderer;
 
-	bool kiko::Renderer::Initialize()
+	bool Renderer::Initialize()
 	{
 		SDL_Init(SDL_INIT_VIDEO);
 		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
@@ -16,7 +16,7 @@ namespace kiko
 		return true;
 	}
 
-	void kiko::Renderer::Shutdown()
+	void Renderer::Shutdown()
 	{
 		SDL_DestroyRenderer(m_renderer);
 		SDL_DestroyWindow(m_window);
@@ -24,7 +24,7 @@ namespace kiko
 		IMG_Quit();
 	}
 
-	void kiko::Renderer::CreateWindow(const std::string& title, int width, int height)
+	void Renderer::CreateWindow(const std::string& title, int width, int height)
 	{
 		m_width = width;
 		m_height = height;
@@ -33,12 +33,12 @@ namespace kiko
 		m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
 	}
 
-	void kiko::Renderer::BeginFrame()
+	void Renderer::BeginFrame()
 	{
 		SDL_RenderClear(m_renderer);
 	}
 
-	void kiko::Renderer::EndFrame()
+	void Renderer::EndFrame()
 	{
 		SDL_RenderPresent(m_renderer);
 	}

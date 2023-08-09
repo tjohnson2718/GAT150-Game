@@ -64,17 +64,18 @@ void SpaceGame::Update(float dt)
 			player->m_game = this;
 			m_scene->Add(std::move(player));
 
-			//creat components
+			//create components
 
-			//sprite component
-			std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-			component->m_texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
+			//model component
+			std::unique_ptr<kiko::ModelRenderComponent> renderComponent = std::make_unique<kiko::ModelRenderComponent>();
+			renderComponent->m_model = kiko::g_resources.Get<kiko::Model>("ship.txt", kiko::g_renderer);
 
 			//physics component
 			auto physicsComponent = std::make_unique<kiko::EnginePhysicsComponent>();
 			physicsComponent->m_damping = 0.9f;
+			
 			player->AddComponent(std::move(physicsComponent));
-			player->AddComponent(std::move(component));
+			player->AddComponent(std::move(renderComponent));
 			// do this same thing for the enemy
 		}
 

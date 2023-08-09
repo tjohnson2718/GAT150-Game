@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector2.h"
+#include "Math/Matrix22.h"
 
 namespace kiko
 {
@@ -19,5 +20,12 @@ namespace kiko
 			scale{ scale }
 		{}
 
+		mat2 GetMatrix() const
+		{
+			mat2 ms = mat2::CreateScale(scale);
+			mat2 mr = mat2::CreateRotation(rotation);
+
+			return ms * mr;
+		}
 	};
 }

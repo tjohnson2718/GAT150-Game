@@ -28,7 +28,7 @@ namespace kiko
 		std::array<uint8_t, 3> m_prevMouseButtonState;
 
 		std::vector<uint8_t> m_keyboardState;
-		std::vector<uint8_t> m_prevKeyboardState;\
+		std::vector<uint8_t> m_prevKeyboardState;
 	};
 
 	extern InputSystem g_inputSystem;

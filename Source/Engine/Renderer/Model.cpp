@@ -8,7 +8,7 @@ namespace kiko
 	bool Model::Load(const std::string& filename)
 	{
 		std::string buffer;
-		kiko::readFile(filename, buffer);
+		readFile(filename, buffer);
 
 		std::istringstream stream(buffer);
 
@@ -46,8 +46,20 @@ namespace kiko
 			renderer.DrawLine(p1.x, p1.y, p2.x, p2.y);
 		}
 	}
+
 	void Model::Draw(Renderer& renderer, const Transform& transform)
 	{
+		mat2 mx = transform.GetMatrix();
+		renderer.SetColor(Color::toInt(m_color.r), Color::toInt(m_color.g), Color::toInt(m_color.b), Color::toInt(m_color.a));
+
+		for (int i = 0; i < m_points.size() - 1; i++)
+		{
+			vec2 p1 = (mx * m_points[i]) + transform.position;
+			vec2 p2 = (mx * m_points[i + 1]) + transform.position;
+
+			renderer.DrawLine(p1.x, p1.y, p2.x, p2.y);
+		}
+
 		Draw(renderer, transform.position, transform.rotation, transform.scale);
 	}
 
@@ -62,5 +74,9 @@ namespace kiko
 		}
 
 		return m_radius;
+	}
+	bool Model::Create(std::string filename, ...)
+	{
+		return Load(filename);
 	}
 }

@@ -14,6 +14,11 @@ namespace kiko
 		Vector3(float x, float y, float g) { this->x = x; this->y = y; this->z = z; }
 		Vector3(int x, int y, int g) { this->x = (float)x; this->y = (float)y; this->z = (float)g; }
 
+		float operator [] (size_t index) const { return (&x)[index]; }
+		float& operator [] (size_t index) { return (&x)[index]; }
+
+		Vector3 operator - () const { return Vector3(-x, -y, -z); }
+
 		Vector3 operator + (const Vector3& v) const { return Vector3(x + v.x, y + v.y, z + v.z); }
 		Vector3 operator - (const Vector3& v) const { return Vector3(x - v.x, y - v.y, z - v.z); }
 		Vector3 operator / (const Vector3& v) const { return Vector3(x / v.x, y / v.y, z / v.z); }
@@ -55,6 +60,11 @@ namespace kiko
 		v.y = std::stof(ys);
 
 		return stream;
+	}
+
+	inline float Vector3::Dot(const Vector3& v1, const Vector3& v2)
+	{
+		return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 	}
 
 	using vec3 = Vector3;

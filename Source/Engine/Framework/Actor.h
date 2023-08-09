@@ -11,10 +11,10 @@ namespace kiko
 	public:
 		Actor() = default;
 
-		Actor(const kiko::Transform& transform) : m_transform { transform } {}
+		Actor(const Transform& transform) : m_transform{ transform } {}
 
 		virtual void Update(float dt);
-		virtual void Draw(kiko::Renderer& renderer);
+		virtual void Draw(Renderer& renderer);
 
 		void AddComponent(std::unique_ptr<Component> component);
 
@@ -33,7 +33,7 @@ namespace kiko
 
 		class Game* m_game = nullptr;
 
-		kiko::Transform m_transform;
+		Transform m_transform;
 		std::string m_tag;
 
 		float m_lifespan = -1.0f;
