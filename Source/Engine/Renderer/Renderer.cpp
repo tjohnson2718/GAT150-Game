@@ -68,18 +68,36 @@ namespace kiko
 	{
 		SDL_RenderDrawPointF(m_renderer, x, y);
 	}
+
 	void Renderer::DrawTexture(Texture* texture, float x, float y, float angle, float imgScaleX, float imgScaleY)
 	{
 		vec2 size = texture->GetSize();
 
 		SDL_Rect dest;
-		dest.x = static_cast<int>(x - (size.x * 0.5));
-		dest.y = static_cast<int>(y - (size.y * 0.5f));
+		dest.x = (int)(x - (size.x * 0.5));
+		dest.y = (int)(y - (size.y * 0.5f));
 
-		dest.w = static_cast<int>(size.x * imgScaleX); // scale x determined here
-		dest.h = static_cast<int>(size.y * imgScaleY); // scale y determined here
+		dest.w = (int)(size.x * imgScaleX); // scale x determined here
+		dest.h = (int)(size.y * imgScaleY); // scale y determined here
 
 		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
+	}
+
+	void Renderer::DrawTexture(Texture* texture, const Transform& transform)
+	{
+		mat3 mx = transform.GetMatrix();
+
+		vec2 position = mx.GetTranslation();
+
+		vec2 size = texture->GetSize() * mx.GetScale();
+
+		SDL_Rect dest;
+		dest.x = (int)(position.x - (size.x * 0.5f));
+		dest.y = (int)(position.y - (size.y * 0.5f));
+		dest.w = (int)(size.x); // scale x determined here
+		dest.h = (size.y); // scale y determined here
+
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, RadiansToDegrees(mx.GetRotation()), nullptr, SDL_FLIP_NONE);
 	}
 }
 

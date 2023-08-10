@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
 	game->Initialize();
 
 	//load ship
-	kiko::res_t<kiko::Texture>texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
+	//kiko::res_t<kiko::Texture>texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
  	
 
 	vector<Star> stars; 
@@ -132,7 +132,7 @@ int main(int argc, char* argv[])
 
 		game->Draw(kiko::g_renderer);
 
-		kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
+		//kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
 
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
 
