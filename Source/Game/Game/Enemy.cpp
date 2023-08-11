@@ -4,6 +4,22 @@
 #include "Framework/Scene.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Emitter.h"
+#include "Framework/Components/CollisionComponent.h"
+#include "Framework/Components/RenderComponent.h
+
+bool Enemy::Initialize()
+{
+	auto collisionComponent = GetComponent<kiko::CollisionComponent>();
+	if (collisionComponent)
+	{
+		auto renderComponent = GetComponent<kiko::RenderComponent>();
+		if (renderComponent)
+		{
+			float scale = m_transform.scale;
+			collisionComponent->m_radius = renderComponent->GetRadius() * scale;
+		}
+	}
+}
 
 void Enemy::Update(float dt)
 {

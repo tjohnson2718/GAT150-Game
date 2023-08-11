@@ -1,4 +1,5 @@
 #pragma once
+#include "Object.h"
 #include "Core/Core.h"
 #include "Renderer/Model.h"
 #include "Components/Component.h"
@@ -6,25 +7,23 @@
 
 namespace kiko
 {
-	class Actor
+	class Actor : public Object
 	{
 	public:
 		Actor() = default;
 
 		Actor(const Transform& transform) : m_transform{ transform } {}
 
+		virtual bool Initialize() override;
+		virtual void OnDestroy() override;
+
 		virtual void Update(float dt);
 		virtual void Draw(Renderer& renderer);
 
 		void AddComponent(std::unique_ptr<Component> component);
-
 		template<typename T>
 		T* GetComponent();
 
-
-
-		//pretty sure this is supposed to return void
-		//inline float GetRadius() { return m_model->GetRadius() * m_transform.scale; }
 		float GetRadius() { return 30.0f; }
 		virtual void OnCollision(Actor* other) {}
 
