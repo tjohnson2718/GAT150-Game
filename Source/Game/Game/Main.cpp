@@ -52,9 +52,7 @@ void print(const std::string& s, const T& container)
 
 int main(int argc, char* argv[])
 {
-	//int j = 0;
-
-	//ASSERT_LOG(j, "pointer is null.")
+	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SprtieComponent");
 
 	INFO_LOG("Initialize Engine...")
 

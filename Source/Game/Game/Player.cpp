@@ -61,12 +61,11 @@ void Player::Update(float dt)
 		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1);
 
 		std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);
-		weapon->AddComponent(std::move(component));
+		component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); 
 
 
 		kiko::Transform transform2{ m_transform.position, m_transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
-		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform2);
+		weapon = std::make_unique<Weapon>(400.0f, transform2);
 		weapon->m_tag = "Player";
 		m_scene->Add(std::move(weapon));
 
@@ -75,11 +74,10 @@ void Player::Update(float dt)
 		weapon->AddComponent(std::move(collisionComponent));
 
 		component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);
+		component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); //kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);
 
 		weapon->Initialize();
 		weapon->AddComponent(std::move(component));
-
 	}
 }
 

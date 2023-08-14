@@ -1,21 +1,21 @@
 #pragma once
 #include "Resource.h"
+#include "Framework/Singleton.h"
 #include <string>
 #include <map>
 #include <memory>
 
+#define GET_RESOURCE(type, filename, ...) kiko::ResourceManager::Instance().Get<type>(filename, __VA_ARGS__)
+
 namespace kiko
 {
-	class ResourceManager
+	class ResourceManager : public Singleton<ResourceManager>
 	{
 	public:
 		template<typename T, typename ... TArgs>
 		res_t<T> Get(const std::string& filename, TArgs ... args);
 
 		ResourceManager() = default;
-
-		void Add(const std::string& id, const std::string& filename);
-		std::shared_ptr<Resource> Get(const std::string& id);
 
 	private:
 		std::map<std::string, res_t<Resource>> m_resources;
@@ -36,6 +36,4 @@ namespace kiko
 		return resource;
 
 	}
-
-	extern ResourceManager g_resources;
 }

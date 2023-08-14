@@ -5,7 +5,7 @@
 #include "Renderer/Renderer.h"
 #include "Framework/Emitter.h"
 #include "Framework/Components/CollisionComponent.h"
-#include "Framework/Components/RenderComponent.h
+#include "Framework/Components/RenderComponent.h"
 
 bool Enemy::Initialize()
 {
@@ -19,6 +19,8 @@ bool Enemy::Initialize()
 			collisionComponent->m_radius = renderComponent->GetRadius() * scale;
 		}
 	}
+
+	return true;
 }
 
 void Enemy::Update(float dt)

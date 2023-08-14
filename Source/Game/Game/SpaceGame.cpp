@@ -14,6 +14,7 @@
 bool SpaceGame::Initialize()
 {
 	//Text
+	//m_font = GET_RESOURCE(kiko::Font, "font.ttf", 24);
 	std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("font.ttf", 24);
 	std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
 	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
@@ -67,7 +68,7 @@ void SpaceGame::Update(float dt)
 
 			//model component
 			auto renderComponent = std::make_unique<kiko::SpriteComponent>();
-			renderComponent->m_texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
+			renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "ship.png", kiko::g_renderer); //kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
 			player->AddComponent(std::move(renderComponent));
 
 			//physics component
@@ -120,8 +121,8 @@ void SpaceGame::Update(float dt)
 			enemy->m_tag = "Enemy";
 			enemy->m_game = this;
 
-			auto renderComponent = std::make_unique<kiko::SpriteComponent>();
-			renderComponent->m_texture = kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
+			auto renderComponent = kiko::Factory::Instance().Create<kiko::SpriteComponent>("SpriteComponent");
+			renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "ship.png", kiko::g_renderer); 
 			enemy->AddComponent(std::move(renderComponent));
 
 			auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
