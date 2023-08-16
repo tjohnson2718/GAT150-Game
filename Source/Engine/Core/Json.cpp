@@ -1,10 +1,10 @@
 #include "Json.h"
 #include "FileIO.h"
-#include "Core/Logger.h"
+#include "Logger.h"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "rapidjson/include/rapidjson/istreamwrapper.h"
 
 namespace kiko
 {

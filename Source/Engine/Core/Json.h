@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/Vector2.h"
+#include "rapidjson/include/rapidjson/istreamwrapper.h"
 #include <rapidjson/include/rapidjson/document.h>
 #include <string>
 

@@ -24,7 +24,7 @@ namespace kiko
 		Object(const std::string name) : m_name{ name } {}
 		virtual ~Object() { OnDestroy(); }
 
-		CLASS_DECLARATION(Object)
+		//CLASS_DECLARATION(Object)
 
 		virtual bool Initialize() { return true; }
 		virtual void OnDestroy() {}

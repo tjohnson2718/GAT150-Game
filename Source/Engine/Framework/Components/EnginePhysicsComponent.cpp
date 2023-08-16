@@ -3,7 +3,7 @@
 
 namespace kiko
 {
-	CLASS_DEFINITION(EnginePhysicsComponent)
+	//CLASS_DEFINITION(EnginePhysicsComponent)
 
 	void EnginePhysicsComponent::Update(float dt)
 	{

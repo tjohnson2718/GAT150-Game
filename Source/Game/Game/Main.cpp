@@ -1,13 +1,13 @@
 #include "Renderer/Renderer.h"
 #include "Core/Core.h" 
 #include"Input/InputSystem.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "Framework/Framework.h"
 #include "Audio/AudioSystem.h"
 
-#include "SpaceGame.h"
 
-#include "Framework/Framework.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "SpaceGame.h"
 
 #include <iostream> 
 #include <vector>
@@ -79,13 +79,13 @@ int main(int argc, char* argv[])
 	std::cout << str << std::endl;
 
 	bool b;
-	kiko::Json::Read(document, b, i1);
+	kiko::Json::Read(document, "boolean", b, true);
 
 	float f;
-	kiko::Json::Read(document, f, i1);
+	kiko::Json::Read(document, "float", f, true);
 
 	kiko::vec2 v2;
-	kiko::Json::Read(document, v2, i1);
+	kiko::Json::Read(document,"vector2", v2, true);
 	std::cout << v2 << std::endl;
 
 	//our window setup
