@@ -2,6 +2,8 @@
 #include "Framework/Actor.h"
 namespace kiko
 {
+	//CLASS_DEFINITION(CircleCollisionComponent)
+
 	void CircleCollisionComponent::Update(float dt)
 	{
 

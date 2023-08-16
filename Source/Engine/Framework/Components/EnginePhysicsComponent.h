@@ -2,6 +2,8 @@
 #include "PhysicsComponent.h"
 namespace kiko
 {
+	CLASS_DEFINITION(EnginePhysicsComponent)
+
 	class EnginePhysicsComponent : public PhysicsComponent
 	{
 	public:

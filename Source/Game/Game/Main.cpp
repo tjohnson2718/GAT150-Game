@@ -74,6 +74,20 @@ int main(int argc, char* argv[])
 	kiko::Json::Read(document, "integer2", i2);
 	std::cout << i2 << std::endl;
 
+	std::string str;
+	kiko::Json::Read(document, str, i1);
+	std::cout << str << std::endl;
+
+	bool b;
+	kiko::Json::Read(document, b, i1);
+
+	float f;
+	kiko::Json::Read(document, f, i1);
+
+	kiko::vec2 v2;
+	kiko::Json::Read(document, v2, i1);
+	std::cout << v2 << std::endl;
+
 	//our window setup
 	kiko::g_renderer.Initialize();
 	kiko::g_renderer.CreateWindow("CSC196", 800, 600);

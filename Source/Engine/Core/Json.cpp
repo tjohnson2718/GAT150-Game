@@ -43,4 +43,64 @@ namespace kiko
 
 		return false;
 	}
+
+	bool Json::Read(const rapidjson::Value& value, const std::string name, float& data, bool required)
+	{
+		if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsFloat())
+		{
+			if (required) ERROR_LOG("Cannot read required json data: " << name.c_str());
+			return false;
+		}
+
+		data = value[name.c_str()].GetFloat();
+		return false;
+	}
+
+	bool Json::Read(const rapidjson::Value& value, const std::string name, bool& data, bool required)
+	{
+		if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool())
+		{
+			if (required) ERROR_LOG("Cannot read required json data: " << name.c_str());
+			return false;
+		}
+
+		data = value[name.c_str()].GetBool();
+		return false;
+	}
+
+	bool Json::Read(const rapidjson::Value& value, const std::string name, std::string& data, bool required)
+	{
+		if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString())
+		{
+			if (required) ERROR_LOG("Cannot read required json data: " << name.c_str());
+			return false;
+		}
+
+		data = value[name.c_str()].GetString();
+		return false;
+	}
+
+	bool Json::Read(const rapidjson::Value& value, const std::string name, vec2& data, bool required)
+	{
+		if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || !value[name.c_str()].Size() != 2)
+		{
+			if (required) ERROR_LOG("Cannot read required json data: " << name.c_str());
+			return false;
+		}
+
+		auto& array = value[name.c_str()];
+
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsNumber())
+			{
+				ERROR_LOG("Invalid json data type: " << name.c_str());
+				return false;
+			}
+
+			data[i] = array[i].GetFloat();
+		}
+
+		return true;
+	}
 }
