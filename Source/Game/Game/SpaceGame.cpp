@@ -59,7 +59,7 @@ void SpaceGame::Update(float dt)
 		{
 			// create player
 			auto player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 1 });
-			player->m_tag = "Player";
+			player->tag = "Player";
 			player->m_game = this;
 			
 			////create components
@@ -107,7 +107,7 @@ void SpaceGame::Update(float dt)
 				data.color = kiko::Color{ 1, 0, 0, 1 };
 				kiko::Transform transform{ { kiko::g_inputSystem.GetMousePosition() }, 0, 1 };
 				auto emitter = std::make_unique<kiko::Emitter>(transform, data);
-				emitter->m_lifespan = 1.0f;
+				emitter->lifespan = 1.0f;
 				m_scene->Add(std::move(emitter));
 			}
 		}
@@ -116,7 +116,7 @@ void SpaceGame::Update(float dt)
 		{
 			m_spawnTimer = 0;
 			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(4.0f, 7.0f), kiko::Pi, kiko::Transform{ { kiko::random(800), kiko::random(600) }, kiko::randomf(kiko::TwoPi), 3.0f });
-			enemy->m_tag = "Enemy";
+			enemy->tag = "Enemy";
 			enemy->m_game = this;
 
 			auto renderComponent = kiko::Factory::Instance().Create<kiko::SpriteComponent>("SpriteComponent");

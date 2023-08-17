@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Vector2.h"
+#include "Core/Math/Vector2.h"
 
 namespace kiko
 {

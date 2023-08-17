@@ -1,8 +1,6 @@
 #pragma once
-
 #include "Font.h"
-#include "Core/Memory.h"
-#include "Core/Color.h"
+#include "Core/Math/Color.h"
 #include <string>
 #include <memory>
 

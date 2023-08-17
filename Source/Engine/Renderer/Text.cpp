@@ -2,7 +2,6 @@
 #include "Font.h"
 #include "Renderer.h"
 #include <SDL2-2.28.0/include/SDL_ttf.h>
-#include <SDL2-2.28.0/include/SDL.h>
 
 namespace kiko
 {

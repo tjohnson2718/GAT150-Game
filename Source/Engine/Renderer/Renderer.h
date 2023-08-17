@@ -7,8 +7,8 @@
 #include "Text.h"
 #include "Texture.h"
 
-#include <string>
 #include <SDL2-2.28.0/include/SDL.h>
+#include <string>
 
 namespace kiko
 {

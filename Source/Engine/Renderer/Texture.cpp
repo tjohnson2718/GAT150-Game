@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include "Renderer.h"
-#include "SDL2-2.28.0/include/SDL_image.h"
 #include "Core/Logger.h"
+#include "SDL2-2.28.0/include/SDL_image.h"
 
 
 namespace kiko

@@ -75,17 +75,17 @@ int main(int argc, char* argv[])
 	std::cout << i2 << std::endl;
 
 	std::string str;
-	kiko::Json::Read(document, str, i1);
+	kiko::Json::Read(document, "string", str);
 	std::cout << str << std::endl;
 
 	bool b;
-	kiko::Json::Read(document, "boolean", b, true);
+	kiko::Json::Read(document, "boolean", b);
 
 	float f;
-	kiko::Json::Read(document, "float", f, true);
+	kiko::Json::Read(document, "float", f);
 
 	kiko::vec2 v2;
-	kiko::Json::Read(document,"vector2", v2, true);
+	kiko::Json::Read(document, "vector2", v2);
 	std::cout << v2 << std::endl;
 
 	//our window setup

@@ -3,6 +3,7 @@
 
 #define CLASS_DECLARATION(classname) \
 	virtual const char* GetClassName() { return #classname; } \
+		void Read(const json_t& value); \
 		class Register \
 		{ \
 		public: \
@@ -12,8 +13,7 @@
 			} \
 		}; 
 
-#define CLASS_DEFINITION(classname) \
-	classname::Register register_class;
+#define CLASS_DEFINITION(classname) classname::Register register_class;
 
 namespace kiko
 {
