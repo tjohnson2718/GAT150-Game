@@ -4,6 +4,8 @@
 
 namespace kiko
 {
+	CLASS_DEFINITION(Actor)
+
 	bool Actor::Initialize()
 	{
 		for (auto& component : components)

@@ -1,5 +1,6 @@
 #pragma once
-#include "Framework/Components/Component.h"
+//#include "Framework/Components/Component.h"
+#include "Framework/Framework.h"
 
 namespace kiko
 {

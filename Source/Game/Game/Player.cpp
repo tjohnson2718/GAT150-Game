@@ -1,7 +1,7 @@
 #pragma once
 #include "Player.h"
 #include "Input/InputSystem.h"
-#include "Weapon.h"
+#include "WeaponComponent.h"
 #include "SpaceGame.h"
 #include "Renderer/Renderer.h"
 

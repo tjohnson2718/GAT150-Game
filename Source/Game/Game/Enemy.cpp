@@ -54,7 +54,7 @@ void Enemy::OnCollision(Actor* other)
 	//Player* p = dynamic_cast<Player*>(other)
 	if (other->tag == "Player")
 	{
-		kiko::EmitterData data;
+		/*kiko::EmitterData data;
 		data.burst = true;
 		data.burstCount = 100;
 		data.spawnRate = 200;
@@ -71,7 +71,7 @@ void Enemy::OnCollision(Actor* other)
 		emitter->lifespan = 1.0f;
 		m_scene->Add(std::move(emitter));
 
-		m_game->AddPoints(100);
+		m_game->AddPoints(100);*/
 		destroyed = true;
 	}
 }

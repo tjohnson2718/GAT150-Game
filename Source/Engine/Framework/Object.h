@@ -1,4 +1,6 @@
 #pragma once
+#include "Factory.h"
+#include "Core/Json.h"
 #include <string>
 
 #define CLASS_DECLARATION(classname) \
@@ -21,15 +23,15 @@ namespace kiko
 	{
 	public:
 		Object() = default;
-		Object(const std::string name) : m_name{ name } {}
+		Object(const std::string name) : name{ name } {}
 		virtual ~Object() { OnDestroy(); }
 
-		//CLASS_DECLARATION(Object)
+		CLASS_DECLARATION(Object)
 
 		virtual bool Initialize() { return true; }
 		virtual void OnDestroy() {}
 
 	protected:
-		std::string m_name;
+		std::string name;
 	};
 }

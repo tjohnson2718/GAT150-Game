@@ -65,16 +65,16 @@ void SpaceGame::Update(float dt)
 			////create components
 
 			//model component
-			auto renderComponent = std::make_unique<kiko::SpriteComponent>();
+			auto renderComponent = CREATE_CLASS(RenderComponent); //std::make_unique<kiko::SpriteComponent>();
 			renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "ship.png", kiko::g_renderer); //kiko::g_resources.Get<kiko::Texture>("ship.png", kiko::g_renderer);
 			player->AddComponent(std::move(renderComponent));
 
 			//physics component
-			auto physicsComponent = std::make_unique<kiko::EnginePhysicsComponent>();
+			auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent); //std::make_unique<kiko::EnginePhysicsComponent>();
 			physicsComponent->m_damping = 0.9f;
 			player->AddComponent(std::move(physicsComponent));
 
-			auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+			auto collisionComponent = CREATE_CLASS(CircleCollisionComponent); //std::make_unique<kiko::CircleCollisionComponent>();
 			collisionComponent->m_radius = 30.0f;
 			player->AddComponent(std::move(collisionComponent));
 

@@ -6,8 +6,7 @@ namespace kiko
 	{
 		READ_DATA(value, position);
 		READ_DATA(value, rotation);
-		READ_DATA(value, scale);
-		
+		READ_DATA(value, scale);	
 	}
 }
 

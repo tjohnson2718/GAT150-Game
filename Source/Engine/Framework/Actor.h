@@ -11,6 +11,8 @@ namespace kiko
 	class Actor : public Object
 	{
 	public:
+		CLASS_DECLARATION(Actor)
+
 		Actor() = default;
 
 		Actor(const Transform& transform) : transform{ transform } {}
@@ -27,8 +29,6 @@ namespace kiko
 
 		float GetRadius() { return 30.0f; }
 		virtual void OnCollision(Actor* other) {}
-
-		void Read(const json_t& value);
 
 		class Scene* m_scene = nullptr;
 		friend class Scene;
