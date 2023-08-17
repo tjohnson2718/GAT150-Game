@@ -5,15 +5,15 @@
 
 #define CLASS_DECLARATION(classname) \
 	virtual const char* GetClassName() { return #classname; } \
-		void Read(const json_t& value); \
-		class Register \
+	virtual void Read(const json_t& value); \
+	class Register \
+	{ \
+	public: \
+		Register() \
 		{ \
-		public: \
-			Register() \
-			{ \
-				Factory::Instance().Register<classname>(#classname); \
-			} \
-		}; 
+			Factory::Instance().Register<classname>(#classname); \
+		} \
+	}; 
 
 #define CLASS_DEFINITION(classname) classname::Register register_class;
 

@@ -8,6 +8,7 @@ namespace kiko
 
 	bool ModelRenderComponent::Initialize()
 	{
+		if (!modelName.empty()) m_model = GET_RESOURCE(Model, modelName);
 		m_model = GET_RESOURCE(Model, modelName);
 		return true;
 	}

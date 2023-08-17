@@ -1,7 +1,7 @@
 #pragma once
 #include "Player.h"
 #include "Input/InputSystem.h"
-#include "WeaponComponent.h"
+#include "Weapon.h"
 #include "SpaceGame.h"
 #include "Renderer/Renderer.h"
 
@@ -57,34 +57,34 @@ void Player::Update(float dt)
 		!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 	{
 		// create weapon
-		kiko::Transform transform1{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1};
-		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1);
-		weapon->tag = "Player";
+		//kiko::Transform transform1{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1};
+		//std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1);
+		//weapon->tag = "Player";
 
-		auto component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); 
-		weapon->AddComponent(std::move(component));
+		//auto component = std::make_unique<kiko::SpriteComponent>();
+		//component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); 
+		//weapon->AddComponent(std::move(component));
 
-		auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-		collisionComponent->m_radius = 10.0f;
-		weapon->AddComponent(std::move(collisionComponent));
-		//std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
+		//auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+		//collisionComponent->m_radius = 10.0f;
+		//weapon->AddComponent(std::move(collisionComponent));
+		////std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
 
-		weapon->Initialize();
-		m_scene->Add(std::move(weapon));
-		kiko::Transform transform2{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
-		weapon = std::make_unique<Weapon>(400.0f, transform2);
+		//weapon->Initialize();
+		//m_scene->Add(std::move(weapon));
+		//kiko::Transform transform2{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+		//weapon = std::make_unique<Weapon>(400.0f, transform2);
 
-		collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-		collisionComponent->m_radius = 30.0f;
-		weapon->AddComponent(std::move(collisionComponent));
+		//collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+		//collisionComponent->m_radius = 30.0f;
+		//weapon->AddComponent(std::move(collisionComponent));
 
-		component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); //kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);
-		
+		//component = std::make_unique<kiko::SpriteComponent>();
+		//component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); //kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);
+		//
 
-		weapon->Initialize();
-		m_scene->Add(std::move(weapon));
+		//weapon->Initialize();
+		//m_scene->Add(std::move(weapon));
 	}
 }
 

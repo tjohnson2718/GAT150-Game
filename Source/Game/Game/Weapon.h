@@ -4,7 +4,7 @@
 
 namespace kiko
 {
-	class WeaponComponent : public kiko::Component
+	class Weapon : public Actor
 	{
 	public:
 

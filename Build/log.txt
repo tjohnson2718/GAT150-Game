@@ -1,2 +1,7 @@
-INFO: Factory.h(49) Class Registered: SprtieComponent
+INFO: Factory.h(52) Class Registered: SpriteComponent
+INFO: Factory.h(52) Class Registered: ModelRenderComponent
+INFO: Factory.h(52) Class Registered: EnginePhysicsComponent
+INFO: Factory.h(52) Class Registered: CircleCollisionComponent
+INFO: Factory.h(52) Class Registered: Actor
+INFO: Factory.h(52) Class Registered: SprtieComponent
 INFO: Main.cpp(57) Initialize Engine...
