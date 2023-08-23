@@ -14,7 +14,6 @@ namespace kiko
 			static T instance;
 			return instance;
 		}
-
 	protected:
 		Singleton() = default;
 	};
