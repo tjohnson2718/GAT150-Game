@@ -1,5 +1,5 @@
 #pragma once
-//#include "Framework/Components/Component.h"
+//#include "Framework/Components/PhysicsComponent.h"
 #include "Framework/Framework.h"
 
 namespace kiko
@@ -16,6 +16,7 @@ namespace kiko
 
 	private:
 		float speed = 0;
+		kiko::PhysicsComponent* m_physicsComponent = nullptr;
 	};
 }
 

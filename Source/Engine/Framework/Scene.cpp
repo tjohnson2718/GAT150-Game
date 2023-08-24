@@ -16,7 +16,7 @@ namespace kiko
 		auto iter =  m_actors.begin();
 		while (iter != m_actors.end())
 		{
-			(*iter)->Update(dt);
+			if ((*iter)->active) (*iter)->Update(dt);
 			((*iter)->destroyed) ? iter = m_actors.erase(iter) : iter++;	
 		}
 
@@ -43,7 +43,7 @@ namespace kiko
 	{
 		for (auto& actor : m_actors)
 		{
-			actor->Draw(renderer);
+			if (actor->active)	actor->Draw(renderer);
 		}
 	}
 
@@ -53,9 +53,13 @@ namespace kiko
 		m_actors.push_back(std::move(actor));
 	}
 
-	void Scene::RemoveAll()
+	void Scene::RemoveAll(bool force)
 	{
-		m_actors.clear();
+		auto iter = m_actors.begin();
+		while (iter != m_actors.end())
+		{
+			(force || !(*iter)->persistent) ? iter = m_actors.erase(iter) : iter++;
+		}
 	}
 
 	bool Scene::Load(const std::string& filename)

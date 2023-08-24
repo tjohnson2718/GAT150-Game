@@ -15,7 +15,7 @@ namespace kiko
 	{
 		Actor::Initialize();
 
-		//m_physicsComponent = GetComponent<PhysicsComponent>();
+		m_physicsComponent = GetComponent<PhysicsComponent>();
 		auto collisionComponent = GetComponent<kiko::CollisionComponent>();
 		if (collisionComponent)
 		{
@@ -60,7 +60,7 @@ namespace kiko
 		READ_DATA(value, fireRate);
 	}
 
-	void Enemy::OnCollision(Actor* other)
+	void Enemy::OnCollisionEnter(Actor* other)
 	{
 		//Player* p = dynamic_cast<Player*>(other)
 		if (other->tag == "Player")

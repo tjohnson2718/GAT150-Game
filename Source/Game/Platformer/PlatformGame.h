@@ -4,7 +4,7 @@
 
 //inlude font and text
 
-class SpaceGame : public kiko::Game
+class PlatformGame : public kiko::Game
 {
 public:
 	enum class eState
@@ -31,8 +31,5 @@ private:
 	eState m_state = eState::Title;
 	float m_spawnTimer = 0.0f;
 	float m_spawnTime = 3.0f;
-
-	std::shared_ptr<kiko::Font> m_font;
-	std::unique_ptr<kiko::Text> m_scoreText;
-	std::unique_ptr<kiko::Text> m_titleText;
 };
+

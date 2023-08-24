@@ -8,6 +8,8 @@
 
 namespace kiko
 {
+	CLASS_DEFINITION(Player)
+
 	bool Player::Initialize()
 	{
 		Actor::Initialize();
@@ -57,35 +59,10 @@ namespace kiko
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
 			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 		{
-			// create weapon
-			//kiko::Transform transform1{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1};
-			//std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1);
-			//weapon->tag = "Player";
-
-			//auto component = std::make_unique<kiko::SpriteComponent>();
-			//component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); 
-			//weapon->AddComponent(std::move(component));
-
-			//auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-			//collisionComponent->m_radius = 10.0f;
-			//weapon->AddComponent(std::move(collisionComponent));
-			////std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-
-			//weapon->Initialize();
-			//m_scene->Add(std::move(weapon));
-			//kiko::Transform transform2{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
-			//weapon = std::make_unique<Weapon>(400.0f, transform2);
-
-			//collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-			//collisionComponent->m_radius = 30.0f;
-			//weapon->AddComponent(std::move(collisionComponent));
-
-			//component = std::make_unique<kiko::SpriteComponent>();
-			//component->m_texture = GET_RESOURCE(kiko::Texture, "weapon.png", kiko::g_renderer); //kiko::g_resources.Get<kiko::Texture>("weapon.png", kiko::g_renderer);
-			//
-
-			//weapon->Initialize();
-			//m_scene->Add(std::move(weapon));
+			auto weapon = INSTANTIATE(Weapon, "Weapon");
+			weapon->transform = { transform.position + forward * 30, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+			weapon->Initialize();
+			m_scene->Add(std::move(weapon));
 		}
 	}
 
@@ -97,7 +74,7 @@ namespace kiko
 		READ_DATA(value, playerHealth);
 	}
 
-	void Player::OnCollision(Actor* other)
+	void Player::OnCollisionEnter(Actor* other)
 	{
 		if (other->tag == "Enemy")
 		{

@@ -31,7 +31,8 @@ namespace kiko
 		virtual bool Initialize() { return true; }
 		virtual void OnDestroy() {}
 
-	protected:
+	public:
 		std::string name;
+		bool active = true;
 	};
 }

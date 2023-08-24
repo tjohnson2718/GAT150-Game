@@ -1,4 +1,5 @@
 #pragma once
+#include "ContactListener.h"
 #include "Framework/Singleton.h"
 #include "Core/Math/Vector2.h"
 #include "box2d/include/box2d/box2d.h"
@@ -43,7 +44,7 @@ namespace kiko
 		vec2 WorldToScreen(const vec2& world) { return world * m_pixelsPerUnit; }
 		vec2 ScreenToWorld(const vec2& screen) { return screen * (1.0f / m_pixelsPerUnit); }
 
-		friend class Singelton;
+		friend class Singleton;
 
 	private:
 		PhysicsSystem() = default;
@@ -51,6 +52,7 @@ namespace kiko
 	private:
 		float m_pixelsPerUnit = 48.0f;
 		std::unique_ptr<b2World> m_world;
+		std::unique_ptr<ContactListener> m_contactListener;
 		
 	};
 }

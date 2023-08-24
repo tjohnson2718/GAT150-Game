@@ -1,25 +1,13 @@
-#include "SpaceGame.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "PlatformGame.h"
 
 #include "Core/Core.h"
-
 #include "Framework/Framework.h"
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 
-bool SpaceGame::Initialize()
+bool PlatformGame::Initialize()
 {
-	//Text
-	m_font = GET_RESOURCE(kiko::Font, "font.ttf", 24);
-	std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("font.ttf", 24);
-	std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
-	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
-	
-	//replace m_font with code
-
-
 	// Audio
 	kiko::g_audioSystem.AddAudio("shoot", "Laser2.wav");
 
@@ -31,17 +19,17 @@ bool SpaceGame::Initialize()
 	return true;
 }
 
-void SpaceGame::Shutdown()
+void PlatformGame::Shutdown()
 {
 }
 
-void SpaceGame::Update(float dt)
+void PlatformGame::Update(float dt)
 {
 	switch (m_state)
 	{
-	case SpaceGame::eState::Title:
+	case PlatformGame::eState::Title:
 		m_scene->GetActorByName("Title")->active = true;
-		
+
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
 			m_state = eState::StartGame;
@@ -50,7 +38,7 @@ void SpaceGame::Update(float dt)
 		}
 		break;
 
-	case SpaceGame::eState::StartGame:
+	case PlatformGame::eState::StartGame:
 
 		//Particle System
 		m_score = 0;
@@ -58,21 +46,17 @@ void SpaceGame::Update(float dt)
 		m_state = eState::StartLevel;
 		break;
 
-	case SpaceGame::eState::StartLevel:
+	case PlatformGame::eState::StartLevel:
 		m_scene->RemoveAll();
 
 		{
-			auto player = INSTANTIATE(Player, "Player");
-			player->transform = kiko::Transform{ { 400, 300 }, 0, 1 };
-			player->Initialize();
-			m_scene->Add(std::move(player));
 
 		}
 
 		m_state = eState::Game;
 		break;
 
-	case SpaceGame::eState::Game:
+	case PlatformGame::eState::Game:
 		m_spawnTimer += dt;
 
 		//Emitter
@@ -100,15 +84,11 @@ void SpaceGame::Update(float dt)
 
 		if (m_spawnTimer >= m_spawnTime)
 		{
-			auto enemy = INSTANTIATE(Enemy, "Enemy");
-			enemy->transform = kiko::Transform{ { kiko::random(800), kiko::random(600) }, kiko::randomf(kiko::TwoPi), 1 };
-			enemy->Initialize();
-			m_scene->Add(std::move(enemy));
 		}
 
 		break;
 
-	case SpaceGame::eState::PlayerDead:
+	case PlatformGame::eState::PlayerDead:
 		if (m_lives == 0) m_state = eState::GameOver;
 		else m_state = eState::StartLevel;
 
@@ -123,25 +103,17 @@ void SpaceGame::Update(float dt)
 
 		break;
 
-	case SpaceGame::eState::GameOver:
+	case PlatformGame::eState::GameOver:
 		break;
 
 	default:
 		break;
 	}
 
-	//m_scoreText->Create(kiko::g_renderer, std::to_string(m_score), { 1, 1, 1, 1 });
 	m_scene->Update(dt);
 }
 
-void SpaceGame::Draw(kiko::Renderer& renderer)
+void PlatformGame::Draw(kiko::Renderer& renderer)
 {
 	m_scene->Draw(renderer);
-
-	if (m_state == eState::Title)
-	{
-		//m_text->Draw(renderer, 400, 300);
-	}
-
-	//m_scoreText->Draw(renderer, 40, 40);
 }
