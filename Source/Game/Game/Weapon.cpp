@@ -6,6 +6,8 @@ namespace kiko
 {
 	bool Weapon::Initialize()
 	{
+		Actor::Initialize();
+
 		auto collisionComponent = GetComponent<kiko::CollisionComponent>();
 		if (collisionComponent)
 		{
@@ -22,6 +24,8 @@ namespace kiko
 
 	void Weapon::Update(float dt)
 	{
+		Actor::Update(dt);
+
 		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
 		transform.position += forward * speed * speed * kiko::g_time.GetDeltaTime();
 		transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());

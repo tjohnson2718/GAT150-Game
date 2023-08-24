@@ -1,5 +1,7 @@
 #pragma once
 #include "Framework/Actor.h"
+#include "Framework/Components/PhysicsComponent.h"
+
 class Enemy : public kiko::Actor
 {
 public:
@@ -23,4 +25,6 @@ private:
 
 	float m_fireRate = 0;
 	float m_fireTimer = 0;
+
+	kiko::PhysicsComponent* m_physicsComponent = nullptr;
 };

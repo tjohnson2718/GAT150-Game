@@ -104,6 +104,8 @@ int main(int argc, char* argv[])
 
 		kiko::g_particleSystem.Update(1.0f);
 
+		//kiko::PhysicsSystem.Instance().Update(kiko::g_time.GetDeltaTime());
+
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
 			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 		{
@@ -122,15 +124,15 @@ int main(int argc, char* argv[])
 		kiko::g_renderer.BeginFrame(); //clears the screen, allows for less static
 		//draw
 
-		for (auto& star : stars) //literally just made space screensaver
-		{
-			star.Update();
+		//for (auto& star : stars) //literally just made space screensaver
+		//{
+		//	star.Update();
 
-			if (star.m_pos.x >= kiko::g_renderer.GetWidth()) star.m_pos.x = 0;
-			if (star.m_pos.y >= kiko::g_renderer.GetHeight()) star.m_pos.y = 0;
-			kiko::g_renderer.SetColor(kiko::random(256), kiko::random(256), 150, 255);
-			kiko::g_renderer.DrawPoint(star.m_pos.x, star.m_pos.y);
-		}
+		//	if (star.m_pos.x >= kiko::g_renderer.GetWidth()) star.m_pos.x = 0;
+		//	if (star.m_pos.y >= kiko::g_renderer.GetHeight()) star.m_pos.y = 0;
+		//	kiko::g_renderer.SetColor(kiko::random(256), kiko::random(256), 150, 255);
+		//	kiko::g_renderer.DrawPoint(star.m_pos.x, star.m_pos.y);
+		//}
 
 		game->Draw(kiko::g_renderer);
 
