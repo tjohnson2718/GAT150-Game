@@ -4,6 +4,7 @@
 
 namespace kiko
 {
+	CLASS_DEFINITION(Weapon);
 	bool Weapon::Initialize()
 	{
 		Actor::Initialize();

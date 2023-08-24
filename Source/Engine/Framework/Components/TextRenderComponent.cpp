@@ -24,6 +24,14 @@ namespace kiko
 		return false;
 	}
 
+	void TextRenderComponent::Read(const json_t& value)
+	{
+		RenderComponent::Read(value);
+		READ_DATA(value, text);
+		READ_DATA(value, fontName);
+		READ_DATA(value, fontSize);
+	}
+
 	void TextRenderComponent::Update(float dt)
 	{
 	}
