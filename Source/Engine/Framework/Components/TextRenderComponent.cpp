@@ -59,5 +59,6 @@ namespace kiko
 		READ_DATA(value, text);
 		READ_DATA(value, fontName);
 		READ_DATA(value, fontSize);
+		READ_DATA(value, color);
 	}
 }

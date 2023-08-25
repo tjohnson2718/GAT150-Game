@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 
 		kiko::g_audioSystem.Update();
 
-		kiko::g_particleSystem.Update(1.0f);
+		kiko::g_particleSystem.Update(kiko::g_time.GetDeltaTime());
 
 		//kiko::PhysicsSystem.Instance().Update(kiko::g_time.GetDeltaTime());
 
@@ -106,6 +106,7 @@ int main(int argc, char* argv[])
 		{
 			quit = true;
 		}
+		kiko::PhysicsSystem::Instance().Update(kiko::g_time.GetDeltaTime());
 
 		game->Update(kiko::g_time.GetDeltaTime());
 		

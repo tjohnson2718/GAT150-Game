@@ -35,12 +35,12 @@ public:
 
 int main(int argc, char* argv[])
 {
-	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SprtieComponent");
+	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SpriteComponent");
 
-	INFO_LOG("Initialize Engine...")
+	INFO_LOG("Initialize Engine...");
 
 
-		kiko::MemoryTracker::Initialize();
+	kiko::MemoryTracker::Initialize();
 	std::unique_ptr<int> up = std::make_unique<int>(10);
 
 	kiko::seedRandom((unsigned int)time(nullptr));
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 		kiko::g_renderer.SetColor(0, 0, 0, 0); //sets color to black
 		kiko::g_renderer.BeginFrame(); //clears the screen, allows for less static
 		//draw
-		//game->Draw(kiko::g_renderer);
+		game->Draw(kiko::g_renderer);
 
 		//kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
 

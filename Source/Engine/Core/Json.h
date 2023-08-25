@@ -1,6 +1,8 @@
 #pragma once
 #include "Core/Math/Vector2.h"
 #include "rapidjson/include/rapidjson/istreamwrapper.h"
+#include "Color.h"
+#include "Math/Rect.h"
 #include <rapidjson/include/rapidjson/document.h>
 #include <string>
 
@@ -21,6 +23,8 @@ namespace kiko
 		static bool Read(const rapidjson::Value& value, const std::string name, bool& data, bool required  = false);
 		static bool Read(const rapidjson::Value& value, const std::string name, std::string& data, bool required = false);
 		static bool Read(const rapidjson::Value& value, const std::string name, vec2& data, bool required  = false);
+		static bool Read(const rapidjson::Value& value, const std::string name, Color& data, bool required  = false);
+		static bool Read(const rapidjson::Value& value, const std::string name, Rect& data, bool required  = false);
 		
 	};
 

@@ -5,14 +5,54 @@
 			"name": "Background",
 			"persistent": true,
 			"transform": {
-				"position": [ 400, 300 ],
+				"position": [
+					400,
+					300
+				],
 				"scale": 2,
 				"rotation": 0
 			},
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "platformer/textures/background2.png"
+					"textureName": "platformer/textures/background2.png",
+					"source": [
+						40,
+						40,
+						100,
+						100
+					]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Coin",
+			"persistent": true,
+			"transform": {
+				"position": [
+					400,
+					300
+				],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteAnimRenderComponent",
+					"textureName": "platformer/textures/coin.png",
+					"defaultSequence": "idle",
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 8,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 8,
+							"textureName": "platformer/textures/coin.png"
+						}
+					]
 				}
 			]
 		},
@@ -21,17 +61,27 @@
 			"name": "Title",
 			"persistent": true,
 			"transform": {
-				"position": [ 400, 300 ],
+				"position": [
+					400,
+					300
+				],
 				"scale": 2,
 				"rotation": 0
 			},
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "platformer/textures/font.ttf",
+					"fontName": "platformer/fonts/font.ttf",
 					"fontSize": 24,
-					"text": "Darker Souls"
+					"text": "Darker Souls",
+					"color": [
+						1,
+						0,
+						0,
+						1
+					]
 				}
 			]
 		}
+	]
 }

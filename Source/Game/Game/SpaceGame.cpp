@@ -12,8 +12,8 @@
 bool SpaceGame::Initialize()
 {
 	//Text
-	m_font = GET_RESOURCE(kiko::Font, "font.ttf", 24);
-	std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("font.ttf", 24);
+	m_font = GET_RESOURCE(kiko::Font, "spacegame/fonts/font.ttf", 24);
+	std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("spacegame/fonts/font.ttf", 24);
 	std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
 	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
 	
@@ -67,7 +67,7 @@ void SpaceGame::Update(float dt)
 
 		{
 			auto player = INSTANTIATE(Player, "Player");
-			player->transform = kiko::Transform{ { 400, 300 }, 0, 1 };
+			//player->transform = kiko::Transform{ { 400, 300 }, 0, 1 };
 			player->Initialize();
 			m_scene->Add(std::move(player));
 
@@ -105,7 +105,7 @@ void SpaceGame::Update(float dt)
 		if (m_spawnTimer >= m_spawnTime)
 		{
 			auto enemy = INSTANTIATE(Enemy, "Enemy");
-			enemy->transform = kiko::Transform{ { kiko::random(800), kiko::random(600) }, kiko::randomf(kiko::TwoPi), 1 };
+		//	enemy->transform = kiko::Transform{ { kiko::random(800), kiko::random(600) }, kiko::randomf(kiko::TwoPi), 1 };
 			enemy->Initialize();
 			m_scene->Add(std::move(enemy));
 		}

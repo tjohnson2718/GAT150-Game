@@ -35,23 +35,29 @@ namespace kiko
 
 		// movement
 		float rotate = 0;
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_A)) rotate = -1;
+		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_A))
+		{
+			rotate = -1;
+		}
+
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_D)) rotate = 1;
 		//transform.rotation += rotate * m_turnRate * kiko::g_time.GetDeltaTime();
 		m_physicsComponent->ApplyTorque(rotate * turnRate);
 
 		float thrust = 0;
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_W)) thrust = 1;
-
+		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_W))
+		{
+			thrust = 1;
+		}
+		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_S)) thrust = -1;
 		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
 
 		m_physicsComponent->ApplyForce(forward * speed * thrust);
 
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_W)) thrust = 1;
 
 		//kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(m_transform.rotation);
-		forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
-		transform.position += forward * speed * thrust * kiko::g_time.GetDeltaTime();
+		//forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
+		//transform.position += forward * speed * thrust * kiko::g_time.GetDeltaTime();
 		transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
 		transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
 
@@ -65,6 +71,8 @@ namespace kiko
 			
 			m_scene->Add(std::move(weapon));
 		}
+
+		//std::cout << transform.position.x << " " << transform.position.y << std::endl;
 	} 
 
 	void Player::OnCollisionEnter(Actor* other)

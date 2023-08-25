@@ -75,7 +75,7 @@ namespace kiko
 	}
 
 	void Actor::Read(const json_t& value)
-	{
+ 	{
 		Object::Read(value);
 
 		READ_DATA(value, tag);

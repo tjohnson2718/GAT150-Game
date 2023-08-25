@@ -11,8 +11,6 @@ INFO: Factory.h(71) Class Registered: Box2DCollisionComponent
 INFO: Factory.h(71) Class Registered: Actor
 INFO: Factory.h(71) Class Registered: SpriteComponent
 INFO: Main.cpp(49) Initialize Engine...
-WARNING: Font.cpp(37) Failed to open font: font.ttf
-WARNING: Font.cpp(37) Failed to open font: font.ttf
 INFO: Factory.h(78) Prototype Class Registered: Rocket
 INFO: Factory.h(78) Prototype Class Registered: Enemy
 INFO: Factory.h(78) Prototype Class Registered: Player

@@ -52,6 +52,9 @@
     <ClCompile Include="Event\EventManager.cpp">
       <Filter>Source\Event</Filter>
     </ClCompile>
+    <ClCompile Include="Components\SpriteAnimRenderComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -125,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="Event\EventManager.h">
       <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimRenderComponent.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -28,9 +28,9 @@
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "spacegame/textures/font.ttf",
+					"fontName": "spacegame/fonts/font.ttf",
 					"fontSize": 24,
-					"text": "ASTEROIDZ"
+					"text": "asteroids"
 				}
 			]
 		},
