@@ -11,6 +11,9 @@
     <Filter Include="Source\Resource">
       <UniqueIdentifier>{5f175066-0c73-43f7-aa06-ae0555001bf5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Event">
+      <UniqueIdentifier>{9c2d55c0-bfdf-4199-97b0-1dd151ff65f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp">
@@ -45,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="Components\Box2DCollisionComponent.cpp">
       <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\EventManager.cpp">
+      <Filter>Source\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +119,12 @@
     </ClInclude>
     <ClInclude Include="Components\Box2DCollisionComponent.h">
       <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Event.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\EventManager.h">
+      <Filter>Source\Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

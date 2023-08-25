@@ -1,5 +1,4 @@
 #pragma once
-//#include "Framework/Components/PhysicsComponent.h"
 #include "Framework/Framework.h"
 
 namespace kiko
@@ -12,7 +11,6 @@ namespace kiko
 		bool Initialize() override;
 		void Update(float dt) override;
 		void OnCollision(Actor* actor);
-		//void Read(const json_t& value);
 
 	private:
 		float speed = 0;

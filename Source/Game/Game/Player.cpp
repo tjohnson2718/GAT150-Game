@@ -59,10 +59,20 @@ namespace kiko
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
 			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 		{
-			auto weapon = INSTANTIATE(Weapon, "Weapon");
-			weapon->transform = { transform.position + forward * 30, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+			auto weapon = INSTANTIATE(Weapon, "Rocket");
+			weapon->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
 			weapon->Initialize();
+			
 			m_scene->Add(std::move(weapon));
+		}
+	} 
+
+	void Player::OnCollisionEnter(Actor* other)
+	{
+		if (other->tag == "Enemy")
+		{
+			destroyed = true;
+			kiko::EventManager::Instance().DispatchEvent("OnPlayerDead", 0);
 		}
 	}
 
@@ -72,16 +82,6 @@ namespace kiko
 		READ_DATA(value, speed);
 		READ_DATA(value, turnRate);
 		READ_DATA(value, playerHealth);
-	}
-
-	void Player::OnCollisionEnter(Actor* other)
-	{
-		if (other->tag == "Enemy")
-		{
-			m_game->SetLives(m_game->GetLives() - 1);
-			dynamic_cast<SpaceGame*>(m_game)->SetState(SpaceGame::eState::PlayerDead);
-			destroyed = true;
-		}
 	}
 }
 

@@ -88,7 +88,15 @@ namespace kiko
 				auto actor = CREATE_CLASS_BASE(Actor, type);
 				actor->Read(actorValue);
 
-				Add(std::move(actor));
+				if (actor->prototype)
+				{
+					std::string name = actor->name;
+					Factory::Instance().RegisterPrototype(name, std::move(actor));
+				}
+				else
+				{
+					Add(std::move(actor));
+				}
 			}
 		}
 	}

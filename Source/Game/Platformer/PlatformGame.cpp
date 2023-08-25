@@ -9,11 +9,11 @@
 bool PlatformGame::Initialize()
 {
 	// Audio
-	kiko::g_audioSystem.AddAudio("shoot", "Laser2.wav");
+	//kiko::g_audioSystem.AddAudio("shoot", "Laser2.wav");
 
 	// Scene
 	m_scene = std::make_unique<kiko::Scene>();
-	m_scene->Load("scenes/space_scene.json");
+	m_scene->Load("platformer/scenes/platformer_scene.json");
 	m_scene->Initialize();
 
 	return true;

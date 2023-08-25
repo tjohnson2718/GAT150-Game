@@ -21,12 +21,16 @@ bool SpaceGame::Initialize()
 
 
 	// Audio
-	kiko::g_audioSystem.AddAudio("shoot", "Laser2.wav");
+	kiko::g_audioSystem.AddAudio("shoot", "spacegame/audio/Laser2.wav");
 
 	// Scene
 	m_scene = std::make_unique<kiko::Scene>();
-	m_scene->Load("scenes/space_scene.json");
+	m_scene->Load("spacegame/scenes/space_scene.json");
 	m_scene->Initialize();
+
+	// add events
+	EVENT_SUBSCRIBE("OnAddPoints", SpaceGame::OnAddPoints);
+	EVENT_SUBSCRIBE("OnPlayerDeath", SpaceGame::OnPlayerDead);
 
 	return true;
 }
@@ -144,4 +148,15 @@ void SpaceGame::Draw(kiko::Renderer& renderer)
 	}
 
 	//m_scoreText->Draw(renderer, 40, 40);
+}
+
+void SpaceGame::OnAddPoints(const kiko::Event& event)
+{
+	m_score += std::get<int>(event.data);
+}
+
+void SpaceGame::OnPlayerDead(const kiko::Event& event)
+{
+	m_lives--;
+	m_state = eState::PlayerDead;
 }

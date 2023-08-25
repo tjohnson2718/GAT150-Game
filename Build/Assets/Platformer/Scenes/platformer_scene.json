@@ -12,7 +12,7 @@
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "textures/background2.png"
+					"textureName": "platformer/textures/background2.png"
 				}
 			]
 		},
@@ -28,9 +28,9 @@
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "font.ttf",
+					"fontName": "platformer/textures/font.ttf",
 					"fontSize": 24,
-					"text": "ASTEROIDZ"
+					"text": "Darker Souls"
 				}
 			]
 		}

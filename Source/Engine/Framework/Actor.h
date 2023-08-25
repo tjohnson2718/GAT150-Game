@@ -16,6 +16,8 @@ namespace kiko
 		Actor() = default;
 
 		Actor(const Transform& transform) : transform{ transform } {}
+		
+		Actor(const Actor& other);
 
 		virtual bool Initialize() override;
 		virtual void OnDestroy() override;

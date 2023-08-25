@@ -1,6 +1,7 @@
 #pragma once
 #include "Singleton.h"
 #include "Core/Logger.h"
+#include "Object.h"
 #include <string>
 #include <memory>
 #include <map>
@@ -20,6 +21,20 @@ namespace kiko
 	};
 
 	template<typename T>
+	class PrototypeCreator : public CreatorBase
+	{
+	public:
+		PrototypeCreator(std::unique_ptr<T> prototype) : m_prototype{ std::move(prototype) } {}
+		virtual std::unique_ptr<class Object> Create() override
+		{
+			return m_prototype->Clone();
+		}
+
+	private:
+		std::unique_ptr<T> m_prototype;
+	};
+
+	template<typename T>
 	class Creator : public CreatorBase
 	{
 	public:
@@ -34,6 +49,9 @@ namespace kiko
 	public:
 		template<typename T>
 		void Register(const std::string& key);
+		
+		template<typename T>
+		void RegisterPrototype(const std::string& key, std::unique_ptr<T> prototype);
 
 		template<typename T>
 		std::unique_ptr<T> Create(const std::string& key);
@@ -55,6 +73,13 @@ namespace kiko
 	}
 
 	template<typename T>
+	inline void Factory::RegisterPrototype(const std::string& key, std::unique_ptr<T> prototype)
+	{
+		INFO_LOG("Prototype Class Registered: " << key);
+		m_registry[key] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
+	}
+
+	template<typename T>
 	inline std::unique_ptr<T> Factory::Create(const std::string& key)
 	{
 		auto iter = m_registry.find(key);
@@ -62,6 +87,8 @@ namespace kiko
 		{
 			return std::unique_ptr<T>(dynamic_cast<T*>(iter->second->Create().release()));
 		}
+
+		ERROR_LOG("Class not found in Factory: " << key);
 
 		return std::unique_ptr<T>();
 	}

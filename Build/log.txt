@@ -1,13 +1,20 @@
-INFO: Factory.h(53) Class Registered: Enemy
-INFO: Factory.h(53) Class Registered: Player
-INFO: Factory.h(53) Class Registered: Weapon
-INFO: Factory.h(53) Class Registered: TextRenderComponent
-INFO: Factory.h(53) Class Registered: SpriteComponent
-INFO: Factory.h(53) Class Registered: ModelRenderComponent
-INFO: Factory.h(53) Class Registered: EnginePhysicsComponent
-INFO: Factory.h(53) Class Registered: CircleCollisionComponent
-INFO: Factory.h(53) Class Registered: Box2DPhysicsComponent
-INFO: Factory.h(53) Class Registered: Box2DCollisionComponent
-INFO: Factory.h(53) Class Registered: Actor
-INFO: Factory.h(53) Class Registered: SprtieComponent
-INFO: Main.cpp(48) Initialize Engine...
+INFO: Factory.h(71) Class Registered: Enemy
+INFO: Factory.h(71) Class Registered: Player
+INFO: Factory.h(71) Class Registered: Weapon
+INFO: Factory.h(71) Class Registered: TextRenderComponent
+INFO: Factory.h(71) Class Registered: SpriteComponent
+INFO: Factory.h(71) Class Registered: ModelRenderComponent
+INFO: Factory.h(71) Class Registered: EnginePhysicsComponent
+INFO: Factory.h(71) Class Registered: CircleCollisionComponent
+INFO: Factory.h(71) Class Registered: Box2DPhysicsComponent
+INFO: Factory.h(71) Class Registered: Box2DCollisionComponent
+INFO: Factory.h(71) Class Registered: Actor
+INFO: Factory.h(71) Class Registered: SpriteComponent
+INFO: Main.cpp(49) Initialize Engine...
+WARNING: Font.cpp(37) Failed to open font: font.ttf
+WARNING: Font.cpp(37) Failed to open font: font.ttf
+INFO: Factory.h(78) Prototype Class Registered: Rocket
+INFO: Factory.h(78) Prototype Class Registered: Enemy
+INFO: Factory.h(78) Prototype Class Registered: Player
+INFO: EventManager.cpp(17) Event subscribed: OnAddPoints
+INFO: EventManager.cpp(17) Event subscribed: OnPlayerDeath

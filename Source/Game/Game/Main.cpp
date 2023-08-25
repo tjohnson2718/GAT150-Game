@@ -15,6 +15,7 @@
 #include <vector>
 #include <thread>
 #include <map>
+#include <functional>
 
 using namespace std;
 
@@ -43,10 +44,9 @@ public:
 
 int main(int argc, char* argv[])
 {
-	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SprtieComponent");
+	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SpriteComponent");
 
 	INFO_LOG("Initialize Engine...")
-
 
 	kiko::MemoryTracker::Initialize();
 	std::unique_ptr<int> up = std::make_unique<int>(10);

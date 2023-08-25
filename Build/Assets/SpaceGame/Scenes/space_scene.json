@@ -12,7 +12,7 @@
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "background.png"
+					"textureName": "spacegame/textures/background.png"
 				}
 			]
 		},
@@ -28,7 +28,7 @@
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "font.ttf",
+					"fontName": "spacegame/textures/font.ttf",
 					"fontSize": 24,
 					"text": "ASTEROIDZ"
 				}
@@ -39,17 +39,17 @@
 			"name": "Rocket",
 			"prototype": true,
 			"tag": "Player",
-			"lifespan": 3,
+			"lifespan": 2,
 			"transform": {
 				"position": [ 400, 300 ],
 				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 300,
+			"speed": 200,
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "weapon.png"
+					"textureName": "spacegame/textures/weapon.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",
@@ -72,7 +72,7 @@
 			"tag": "Enemy",
 			"transform": {
 				"position": [ 400, 300 ],
-				"scale": 0.25,
+				"scale": 0.05,
 				"rotation": 0
 			},
 			"speed": 8,
@@ -80,7 +80,7 @@
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "small_enemy.png"
+					"textureName": "spacegame/textures/small_enemy.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",
@@ -109,7 +109,7 @@
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "ship.png"
+					"textureName": "spacegame/textures/ship.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",

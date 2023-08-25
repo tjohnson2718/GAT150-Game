@@ -65,6 +65,10 @@ namespace kiko
 		//Player* p = dynamic_cast<Player*>(other)
 		if (other->tag == "Player")
 		{
+			kiko::EventManager::Instance().DispatchEvent("AddPoints", 100);
+			//m_game->AddPoints(100);
+			destroyed = true;
+
 			kiko::EmitterData data;
 			data.burst = true;
 			data.burstCount = 100;
@@ -76,14 +80,14 @@ namespace kiko
 			data.speedMin = 50;
 			data.speedMax = 250;
 			data.damping = 0.5f;
-			data.color = kiko::Color{ 1, 0, 0, 1 };
+
+			data.color = kiko::Color{ 1, 1, 1, 1 };
+
 			kiko::Transform transform{ { this->transform.position.x }, 0, 1 };
 			auto emitter = std::make_unique<kiko::Emitter>(transform, data);
 			emitter->lifespan = 1.0f;
-			m_scene->Add(std::move(emitter));
 
-			m_game->AddPoints(100);
-			destroyed = true;
+			m_scene->Add(std::move(emitter));
 		}
 	}
 }
