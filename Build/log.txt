@@ -10,8 +10,7 @@ INFO: Factory.h(71) Class Registered: CircleCollisionComponent
 INFO: Factory.h(71) Class Registered: Box2DPhysicsComponent
 INFO: Factory.h(71) Class Registered: Box2DCollisionComponent
 INFO: Factory.h(71) Class Registered: Actor
-INFO: Factory.h(71) Class Registered: SpriteComponent
-INFO: Main.cpp(49) Initialize Engine...
+INFO: Main.cpp(47) Initialize Engine...
 INFO: Factory.h(78) Prototype Class Registered: Rocket
 INFO: Factory.h(78) Prototype Class Registered: Enemy
 INFO: Factory.h(78) Prototype Class Registered: Player

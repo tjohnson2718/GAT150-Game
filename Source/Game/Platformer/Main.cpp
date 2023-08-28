@@ -35,10 +35,7 @@ public:
 
 int main(int argc, char* argv[])
 {
-	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SpriteComponent");
-
 	INFO_LOG("Initialize Engine...");
-
 
 	kiko::MemoryTracker::Initialize();
 	std::unique_ptr<int> up = std::make_unique<int>(10);
@@ -54,13 +51,9 @@ int main(int argc, char* argv[])
 	kiko::g_audioSystem.Initialize();
 	kiko::PhysicsSystem::Instance().Initialize();
 
-
-
-
 	//Create the game
 	unique_ptr<PlatformGame> game = make_unique<PlatformGame>();
-//	game->Initialize();
-
+	game->Initialize();
 
 	// main game loop
 	bool quit = false;
@@ -71,8 +64,6 @@ int main(int argc, char* argv[])
 		kiko::g_audioSystem.Update();
 
 		kiko::g_particleSystem.Update(1.0f);
-
-		//kiko::PhysicsSystem.Instance().Update(kiko::g_time.GetDeltaTime());
 
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
 			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
@@ -86,14 +77,10 @@ int main(int argc, char* argv[])
 			quit = true;
 		}
 
-		//game->Update(kiko::g_time.GetDeltaTime());
-
 		kiko::g_renderer.SetColor(0, 0, 0, 0); //sets color to black
 		kiko::g_renderer.BeginFrame(); //clears the screen, allows for less static
 		//draw
 		game->Draw(kiko::g_renderer);
-
-		//kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
 
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
 

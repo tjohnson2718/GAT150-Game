@@ -13,9 +13,6 @@ bool SpaceGame::Initialize()
 {
 	//Text
 	m_font = GET_RESOURCE(kiko::Font, "spacegame/fonts/font.ttf", 24);
-	//std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("spacegame/fonts/font.ttf", 24);
-	//std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
-	//text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
 
 	// Audio
 	kiko::g_audioSystem.AddAudio("shoot", "spacegame/audio/Laser2.wav");

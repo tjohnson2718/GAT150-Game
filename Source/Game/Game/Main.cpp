@@ -44,8 +44,6 @@ public:
 
 int main(int argc, char* argv[])
 {
-	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SpriteComponent");
-
 	INFO_LOG("Initialize Engine...")
 
 	kiko::MemoryTracker::Initialize();

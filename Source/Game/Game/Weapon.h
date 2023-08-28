@@ -10,7 +10,7 @@ namespace kiko
 
 		bool Initialize() override;
 		void Update(float dt) override;
-		void OnCollision(Actor* actor);
+		void OnCollision(Actor* other);
 
 	private:
 		float speed = 0;

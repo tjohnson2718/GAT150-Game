@@ -17,10 +17,33 @@
 					"type": "SpriteComponent",
 					"textureName": "platformer/textures/background2.png",
 					"source": [
-						40,
-						40,
+						100,
+						100,
 						100,
 						100
+					]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"tag": "Ground",
+			"transform": {
+				"position": [
+					400,
+					520
+				]
+			},
+			"components": [
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [
+						600,
+						20
 					]
 				}
 			]
@@ -32,7 +55,7 @@
 			"transform": {
 				"position": [
 					400,
-					300
+					400
 				],
 				"scale": 2,
 				"rotation": 0
@@ -53,6 +76,140 @@
 							"textureName": "platformer/textures/coin.png"
 						}
 					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"gravityScale": 1,
+					"constraintAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 2
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Crate",
+			"tag": "Ground",
+			"persistent": true,
+			"prototype": true,
+			"transform": {
+				"position": [
+					320,
+					300
+				],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "platformer/textures/crate.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent"
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0.1
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Player",
+			"tag": "Player",
+			"persistent": true,
+			"speed": 10,
+			"jump": 8,
+			"transform": {
+				"position": [
+					440,
+					400
+				],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteAnimRenderComponent",
+					"textureName": "platformer/textures/player.png",
+					"defaultSequence": "idle",
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 7,
+							"numRows": 2,
+							"startFrame": 9,
+							"endFrame": 14,
+							"textureName": "platformer/textures/player.png"
+						},
+						{
+							"name": "run",
+							"fps": 12,
+							"numColumns": 1,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 4,
+							"textureName": "platformer/textures/player.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"gravityScale": 1,
+					"constraintAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 2
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Enemy",
+			"tag": "Enemy",
+			"persistent": true,
+			"speed": 10,
+			"jump": 8,
+			"transform": {
+				"position": [
+					400,
+					200
+				],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteAnimRenderComponent",
+					"textureName": "platformer/textures/bat.png",
+					"defaultSequence": "idle",
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 4,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 14,
+							"textureName": "platformer/textures/player.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"gravityScale": 0,
+					"constraintAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent"
 				}
 			]
 		},
@@ -78,7 +235,7 @@
 						1,
 						0,
 						0,
-						1
+						0
 					]
 				}
 			]
