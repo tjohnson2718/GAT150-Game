@@ -28,9 +28,27 @@
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "spacegame/fonts/font.ttf",
+					"fontName": "spacegame/fonts/NaturalHorizon.ttf",
 					"fontSize": 24,
 					"text": "asteroids"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Score",
+			"persistent": true,
+			"transform": {
+				"position": [ 100, 100 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "spacegame/fonts/NaturalHorizon.ttf",
+					"fontSize": 5,
+					"text": "score"
 				}
 			]
 		},
@@ -45,7 +63,7 @@
 				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 200,
+			"speed": 8,
 			"components": [
 				{
 					"type": "SpriteComponent",
@@ -75,7 +93,7 @@
 				"scale": 0.05,
 				"rotation": 0
 			},
-			"speed": 8,
+			"speed": 3,
 			"turnRate": 0.5,
 			"components": [
 				{
@@ -104,7 +122,7 @@
 				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 8,
+			"speed": 6,
 			"turnRate": 0.5,
 			"components": [
 				{

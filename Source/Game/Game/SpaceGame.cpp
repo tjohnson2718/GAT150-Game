@@ -13,12 +13,9 @@ bool SpaceGame::Initialize()
 {
 	//Text
 	m_font = GET_RESOURCE(kiko::Font, "spacegame/fonts/font.ttf", 24);
-	std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("spacegame/fonts/font.ttf", 24);
-	std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
-	text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
-	
-	//replace m_font with code
-
+	//std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("spacegame/fonts/font.ttf", 24);
+	//std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
+	//text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
 
 	// Audio
 	kiko::g_audioSystem.AddAudio("shoot", "spacegame/audio/Laser2.wav");
@@ -45,11 +42,13 @@ void SpaceGame::Update(float dt)
 	{
 	case SpaceGame::eState::Title:
 		m_scene->GetActorByName("Title")->active = true;
+		m_scene->GetActorByName("Score")->active = false;
 		
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
 			m_state = eState::StartGame;
 			m_scene->GetActorByName("Title")->active = false;
+			m_scene->GetActorByName("Score")->active = true;
 			//m_scene->GetActorByName <kiko::Actor >("Background")->active;
 		}
 		break;
@@ -105,15 +104,17 @@ void SpaceGame::Update(float dt)
 		if (m_spawnTimer >= m_spawnTime)
 		{
 			auto enemy = INSTANTIATE(Enemy, "Enemy");
-		//	enemy->transform = kiko::Transform{ { kiko::random(800), kiko::random(600) }, kiko::randomf(kiko::TwoPi), 1 };
 			enemy->Initialize();
 			m_scene->Add(std::move(enemy));
+
+			m_spawnTimer = 0;
 		}
+		
 
 		break;
 
 	case SpaceGame::eState::PlayerDead:
-		if (m_lives == 0) m_state = eState::GameOver;
+		if (m_lives <= 0) m_state = eState::GameOver;
 		else m_state = eState::StartLevel;
 
 		if (m_lives == 0)
@@ -128,12 +129,13 @@ void SpaceGame::Update(float dt)
 		break;
 
 	case SpaceGame::eState::GameOver:
+
 		break;
 
 	default:
 		break;
 	}
-
+	
 	//m_scoreText->Create(kiko::g_renderer, std::to_string(m_score), { 1, 1, 1, 1 });
 	m_scene->Update(dt);
 }
@@ -141,11 +143,6 @@ void SpaceGame::Update(float dt)
 void SpaceGame::Draw(kiko::Renderer& renderer)
 {
 	m_scene->Draw(renderer);
-
-	if (m_state == eState::Title)
-	{
-		//m_text->Draw(renderer, 400, 300);
-	}
 
 	//m_scoreText->Draw(renderer, 40, 40);
 }
@@ -158,5 +155,6 @@ void SpaceGame::OnAddPoints(const kiko::Event& event)
 void SpaceGame::OnPlayerDead(const kiko::Event& event)
 {
 	m_lives--;
+
 	m_state = eState::PlayerDead;
 }
