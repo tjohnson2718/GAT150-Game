@@ -55,42 +55,11 @@ void PlatformGame::Update(float dt)
 	case PlatformGame::eState::StartLevel:
 		m_scene->RemoveAll();
 
-		{
-
-		}
-
 		m_state = eState::Game;
 		break;
 
 	case PlatformGame::eState::Game:
 		m_spawnTimer += dt;
-
-		//Emitter
-		{
-			if (kiko::g_inputSystem.GetKeyDown(SDL_BUTTON_LEFT))
-			{
-				kiko::EmitterData data;
-				data.burst = true;
-				data.burstCount = 100;
-				data.spawnRate = 200;
-				data.angle = 0;
-				data.angleRange = kiko::Pi;
-				data.lifetimeMin = 0.5f;
-				data.lifetimeMin = 1.5f;
-				data.speedMin = 50;
-				data.speedMax = 250;
-				data.damping = 0.5f;
-				data.color = kiko::Color{ 1, 0, 0, 1 };
-				kiko::Transform transform{ { kiko::g_inputSystem.GetMousePosition() }, 0, 1 };
-				auto emitter = std::make_unique<kiko::Emitter>(transform, data);
-				emitter->lifespan = 1.0f;
-				m_scene->Add(std::move(emitter));
-			}
-		}
-
-		if (m_spawnTimer >= m_spawnTime)
-		{
-		}
 
 		break;
 

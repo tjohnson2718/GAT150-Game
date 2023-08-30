@@ -62,8 +62,13 @@ namespace kiko
 			auto weapon = INSTANTIATE(Weapon, "Rocket");
 			weapon->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
 			weapon->Initialize();
+
+			auto weapon2 = INSTANTIATE(Weapon, "Rocket");
+			weapon2->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+			weapon2->Initialize();
 			
 			m_scene->Add(std::move(weapon));
+			m_scene->Add(std::move(weapon2));
 		}
 	} 
 
@@ -72,7 +77,13 @@ namespace kiko
 		if (other->tag == "Enemy")
 		{
 			destroyed = true;
-			kiko::EventManager::Instance().DispatchEvent("OnPlayerDead", 0);
+			kiko::EventManager::Instance().DispatchEvent("OnPlayerDeath", 0);
+		}
+
+		if (other->tag == "Boss")
+		{
+			destroyed = true;
+			kiko::EventManager::Instance().DispatchEvent("OnPlayerDeath", 0);
 		}
 	}
 
@@ -81,7 +92,6 @@ namespace kiko
 		Actor::Read(value);
 		READ_DATA(value, speed);
 		READ_DATA(value, turnRate);
-		READ_DATA(value, playerHealth);
 	}
 }
 

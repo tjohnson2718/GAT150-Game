@@ -14,25 +14,6 @@
 
 using namespace std;
 
-class Star
-{
-public:
-	
-	void Update()
-	{
-		m_pos += m_vel * kiko::g_time.GetDeltaTime();
-	}
-
-	void Draw(kiko::Renderer& renderer)
-	{
-		renderer.DrawPoint(m_pos.x, m_pos.y);
-	}
-
-public:
-	kiko::vec2 m_pos;
-	kiko::vec2 m_vel;
-};
-
 int main(int argc, char* argv[])
 {
 	INFO_LOG("Initialize Engine...");
@@ -76,7 +57,7 @@ int main(int argc, char* argv[])
 		{
 			quit = true;
 		}
-
+		game->Update(kiko::g_time.GetDeltaTime());
 		kiko::g_renderer.SetColor(0, 0, 0, 0); //sets color to black
 		kiko::g_renderer.BeginFrame(); //clears the screen, allows for less static
 		//draw
@@ -85,6 +66,7 @@ int main(int argc, char* argv[])
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
 
 		kiko::g_renderer.EndFrame();
+		
 	}
 
 	return 0;

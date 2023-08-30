@@ -26,3 +26,5 @@
 
 #include "Factory.h"
 #include "Event/EventManager.h"
+
+#include "Components/SpriteAnimRenderComponent.h"

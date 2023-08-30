@@ -10,7 +10,6 @@ namespace kiko
 		CLASS_DECLARATION(Enemy);
 
 		bool Initialize() override;
-		//void OnDestroy() override;
 		void Update(float dt) override;
 		void OnCollisionEnter(Actor* actor) override;
 
@@ -18,7 +17,6 @@ namespace kiko
 		float speed = 0;
 		float turnRate = 0;
 		float fireRate = 0;
-		float fireTimer = 0;
 		kiko::PhysicsComponent* m_physicsComponent = nullptr;
 	};
 }

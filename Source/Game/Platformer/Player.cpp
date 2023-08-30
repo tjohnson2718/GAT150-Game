@@ -12,8 +12,9 @@ namespace kiko
 	{
 		Actor::Initialize();
 
-		m_physicsComponent = GetComponent<kiko::PhysicsComponent>();
-		
+		m_physicsComponent = GetComponent<PhysicsComponent>();
+		m_spriteAnimComponent = GetComponent<SpriteAnimRenderComponent>();
+
 		return true;
 	}
 
@@ -43,14 +44,26 @@ namespace kiko
 			kiko::vec2 up = kiko::vec2{ 0, -1 };
 			m_physicsComponent->SetVelocity(up * jump);
 		}
+
+		// animation
+		vec2 velocity = m_physicsComponent->m_velocity;
+		if (std::fabs(velocity.x) > 0.2f)
+		{
+			if (dir != 0) m_spriteAnimComponent->flipH = (dir < 0);
+			m_spriteAnimComponent->SetSequence("run");
+		}
+		else
+		{
+			m_spriteAnimComponent->SetSequence("idle");
+		}
 	}
 
 	void Player::OnCollisionEnter(Actor* other)
 	{
 		if (other->tag == "Enemy")
 		{
-			destroyed = true;
-			kiko::EventManager::Instance().DispatchEvent("OnPlayerDead", 0);
+			//destroyed = true;
+			//kiko::EventManager::Instance().DispatchEvent("OnPlayerDead", 0);
 		}
 
 		if (other->tag == "Ground") groundCount++;

@@ -28,7 +28,7 @@ public:
 
 	void SetState(eState state) { m_state = state; }
 	void OnAddPoints(const kiko::Event& event);
-	void OnPlayerDead(const kiko::Event& event);
+	void OnPlayerDeath(const kiko::Event& event);
 
 private:
 	eState m_state = eState::Title;

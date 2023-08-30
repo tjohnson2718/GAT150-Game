@@ -36,6 +36,24 @@
 		},
 		{
 			"type": "Actor",
+			"name": "GameOver",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "spacegame/fonts/NaturalHorizon.ttf",
+					"fontSize": 24,
+					"text": "Game Over"
+				}
+			]
+		},
+		{
+			"type": "Actor",
 			"name": "Score",
 			"persistent": true,
 			"transform": {
@@ -85,6 +103,37 @@
 			]
 		},
 		{
+			"type": "Weapon",
+			"name": "LaserBeam",
+			"tag":  "Boss",
+			"prototype": true,
+			"lifespan": 5,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 1,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "spacegame/textures/boss_weapon.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 0,
+					"gravityScale": 0.3
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ],
+					"isTrigger": false,
+					"constraintAngle": true
+				}
+			]
+		},
+		{
 			"type": "Enemy",
 			"name": "Enemy",
 			"prototype": true,
@@ -100,6 +149,35 @@
 				{
 					"type": "SpriteComponent",
 					"textureName": "spacegame/textures/small_enemy.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
+				}
+			]
+		},
+		{
+			"type": "Boss",
+			"name": "Boss",
+			"prototype": true,
+			"tag": "Boss",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 0.05,
+				"rotation": 0
+			},
+			"speed": 3,
+			"turnRate": 0.5,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "spacegame/textures/alien_boss.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",

@@ -1,6 +1,7 @@
 #include "SpaceGame.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Boss.h"
 
 #include "Core/Core.h"
 
@@ -24,7 +25,7 @@ bool SpaceGame::Initialize()
 
 	// add events
 	EVENT_SUBSCRIBE("OnAddPoints", SpaceGame::OnAddPoints);
-	EVENT_SUBSCRIBE("OnPlayerDeath", SpaceGame::OnPlayerDead);
+	EVENT_SUBSCRIBE("OnPlayerDeath", SpaceGame::OnPlayerDeath);
 
 	return true;
 }
@@ -40,6 +41,7 @@ void SpaceGame::Update(float dt)
 	case SpaceGame::eState::Title:
 		m_scene->GetActorByName("Title")->active = true;
 		m_scene->GetActorByName("Score")->active = false;
+		m_scene->GetActorByName("GameOver")->active = false;
 		
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
@@ -106,8 +108,14 @@ void SpaceGame::Update(float dt)
 
 			m_spawnTimer = 0;
 		}
-		
 
+		if (m_score > 999)
+		{
+			auto boss = INSTANTIATE(Boss, "Boss");
+			boss->Initialize();
+			m_scene->Add(std::move(boss));
+		}
+		
 		break;
 
 	case SpaceGame::eState::PlayerDead:
@@ -126,7 +134,7 @@ void SpaceGame::Update(float dt)
 		break;
 
 	case SpaceGame::eState::GameOver:
-
+		m_scene->GetActorByName("GameOver")->active = false;
 		break;
 
 	default:
@@ -147,9 +155,11 @@ void SpaceGame::Draw(kiko::Renderer& renderer)
 void SpaceGame::OnAddPoints(const kiko::Event& event)
 {
 	m_score += std::get<int>(event.data);
+
+	std::cout << m_score << std::endl;
 }
 
-void SpaceGame::OnPlayerDead(const kiko::Event& event)
+void SpaceGame::OnPlayerDeath(const kiko::Event& event)
 {
 	m_lives--;
 

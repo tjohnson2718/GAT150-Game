@@ -62,10 +62,9 @@ namespace kiko
 
 	void Enemy::OnCollisionEnter(Actor* other)
 	{
-		//Player* p = dynamic_cast<Player*>(other)
 		if (other->tag == "Player")
 		{
-			kiko::EventManager::Instance().DispatchEvent("AddPoints", 100);
+			kiko::EventManager::Instance().DispatchEvent("OnAddPoints", 100);
 			//m_game->AddPoints(100);
 			destroyed = true;
 

@@ -21,6 +21,8 @@ namespace kiko
 		int GetLives() const { return m_lives; }
 		void SetLives(int lives) { m_lives = lives; }
 
+		friend class Boss;
+
 	protected:
 		std::unique_ptr<class Scene> m_scene;
 

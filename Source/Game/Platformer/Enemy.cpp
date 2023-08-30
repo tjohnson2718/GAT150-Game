@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "Player.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Framework.h"
@@ -22,26 +23,12 @@ namespace kiko
 		Actor::Update(dt);
 
 		// movement
-		float dir = 0;
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_A))
+		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
+		Player* player = m_scene->GetActor<Player>();
+		if (player)
 		{
-			dir = -1;
-		}
-
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_D)) dir = 1;
-
-		kiko::vec2 forward = kiko::vec2{ -1, 0 }.Rotate(transform.rotation);
-
-		m_physicsComponent->ApplyForce(forward * speed * dir);
-
-		// Jump
-		bool onGround = (groundCount > 0);
-
-		if (onGround && kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
-			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
-		{
-			kiko::vec2 up = kiko::vec2{ 0, -1 };
-			m_physicsComponent->SetVelocity(up * jump);
+			kiko::vec2 direction = player->transform.position - transform.position;
+			m_physicsComponent->ApplyForce(direction.Normalized() * speed);
 		}
 	}
 
