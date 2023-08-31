@@ -25,11 +25,12 @@ namespace kiko
 		float GetElapsedSeconds();
 
 		float GetTime() const { return m_time; }
-		float GetDeltaTime() const { return m_deltaTime; }
+		float GetDeltaTime() const { return m_deltaTime * m_timeScale; }
 
 	private:
-		float m_time;
-		float m_deltaTime;
+		float m_time = 0;
+		float m_deltaTime = 0;
+		float m_timeScale = 1;
 
 		clock::time_point m_startTime;
 		clock::time_point m_frameTime;

@@ -112,11 +112,12 @@
 			]
 		},
 		{
-			"type": "Actor",
+			"type": "Player",
 			"name": "Player",
 			"tag": "Player",
 			"persistent": true,
 			"speed": 10,
+			"maxSpeed": 10,
 			"jump": 8,
 			"transform": {
 				"position": [
@@ -131,6 +132,8 @@
 					"type": "SpriteAnimRenderComponent",
 					"textureName": "platformer/textures/player.png",
 					"defaultSequence": "idle",
+					"origin": [ 0.5, 1 ],
+					"source": [ 0, 0, 16, 35 ],
 					"sequences": [
 						{
 							"name": "idle",
@@ -224,12 +227,12 @@
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "platformer/fonts/font.ttf",
+					"fontName": "platformer/fonts/NaturalHorizon.ttf",
 					"fontSize": 24,
 					"text": "Darker Souls",
 					"color": [
 						1,
-						0,
+						1,
 						0,
 						0
 					]

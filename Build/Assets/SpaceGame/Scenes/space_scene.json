@@ -54,6 +54,60 @@
 		},
 		{
 			"type": "Actor",
+			"name": "Win",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "spacegame/fonts/NaturalHorizon.ttf",
+					"fontSize": 24,
+					"text": "You Win"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "PlayAgain",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 500 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "spacegame/fonts/NaturalHorizon.ttf",
+					"fontSize": 24,
+					"text": "Press P To Play Again"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Start",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 500 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "spacegame/fonts/NaturalHorizon.ttf",
+					"fontSize": 24,
+					"text": "Press Space To Start"
+				}
+			]
+		},
+		{
+			"type": "Actor",
 			"name": "Score",
 			"persistent": true,
 			"transform": {
@@ -75,14 +129,14 @@
 			"type": "Weapon",
 			"name": "Rocket",
 			"prototype": true,
-			"tag": "Player",
+			"tag": "Weapon",
 			"lifespan": 2,
 			"transform": {
 				"position": [ 400, 300 ],
 				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 8,
+			"speed": 2,
 			"components": [
 				{
 					"type": "SpriteComponent",
@@ -105,7 +159,7 @@
 		{
 			"type": "Weapon",
 			"name": "LaserBeam",
-			"tag":  "Boss",
+			"tag": "Boss",
 			"prototype": true,
 			"lifespan": 5,
 			"transform": {
@@ -143,8 +197,8 @@
 				"scale": 0.05,
 				"rotation": 0
 			},
-			"speed": 3,
-			"turnRate": 0.5,
+			"speed": 0.001,
+			"turnRate": 1,
 			"components": [
 				{
 					"type": "SpriteComponent",
@@ -168,26 +222,23 @@
 			"prototype": true,
 			"tag": "Boss",
 			"transform": {
-				"position": [ 400, 300 ],
-				"scale": 0.05,
+				"position": [ 800, 300 ],
+				"scale": 0.5,
 				"rotation": 0
 			},
-			"speed": 3,
-			"turnRate": 0.5,
+			"lives": 100,
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "spacegame/textures/alien_boss.png"
+					"textureName": "spacegame/textures/boss.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",
-					"damping": 0.98,
-					"angularDamping": 2,
 					"gravityScale": 0
 				},
 				{
 					"type": "Box2DCollisionComponent",
-					"size": [ 32, 32 ]
+					"size": [ 64, 128 ]
 				}
 			]
 		},
@@ -201,8 +252,8 @@
 				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 6,
-			"turnRate": 0.5,
+			"speed": 4,
+			"turnRate": 0.15,
 			"components": [
 				{
 					"type": "SpriteComponent",

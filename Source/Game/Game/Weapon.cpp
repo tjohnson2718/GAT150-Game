@@ -26,8 +26,8 @@ namespace kiko
 		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
 		m_physicsComponent->SetVelocity(forward * speed);
 	
-		transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
-		transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+		// if you want to wrap put it here
+
 	}
 
 	void Weapon::OnCollision(Actor* other)

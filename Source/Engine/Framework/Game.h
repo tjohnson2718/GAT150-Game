@@ -21,6 +21,9 @@ namespace kiko
 		int GetLives() const { return m_lives; }
 		void SetLives(int lives) { m_lives = lives; }
 
+		bool exists = false;
+		bool win = false;
+
 		friend class Boss;
 
 	protected:

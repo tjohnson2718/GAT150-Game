@@ -52,8 +52,17 @@ namespace kiko
 
 		m_physicsComponent->ApplyForce(forward * speed * thrust);
 
-		transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
-		transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+		//transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
+		//transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+
+		if ((transform.position.x < 0 || transform.position.x >(float)kiko::g_renderer.GetWidth()) ||
+			(transform.position.y < 0 || transform.position.y >(float)kiko::g_renderer.GetHeight()))
+		{
+			transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
+			transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+
+			m_physicsComponent->SetPosition(transform.position);
+		}
 
 		// fire weapon
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
@@ -62,13 +71,8 @@ namespace kiko
 			auto weapon = INSTANTIATE(Weapon, "Rocket");
 			weapon->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
 			weapon->Initialize();
-
-			auto weapon2 = INSTANTIATE(Weapon, "Rocket");
-			weapon2->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
-			weapon2->Initialize();
 			
 			m_scene->Add(std::move(weapon));
-			m_scene->Add(std::move(weapon2));
 		}
 	} 
 

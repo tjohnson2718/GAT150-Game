@@ -43,9 +43,17 @@ namespace kiko
 		Vector2 Normalized() const { return *this / Length(); }
 		void Normalize() { *this /= Length(); }
 
+		static float SignedAngle(const Vector2& v1, const Vector2& v2);
 		float Angle() const { return std::atan2f(y, x); }
 		Vector2 Rotate(float radians) const;
 	};
+
+	inline float Vector2::SignedAngle(const Vector2& v1, const Vector2& v2)
+	{
+		float y = v1.x * v2.y - v1.y * v2.x;
+		float x = v1.x * v2.x + v1.y * v2.y;
+		return std::atan2(y, x);
+	}
 
 	inline Vector2 Vector2::Rotate(float radians) const
 	{

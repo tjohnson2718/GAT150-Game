@@ -34,9 +34,6 @@
     <ClInclude Include="Transform.h">
       <Filter>Source\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Source\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Math\Matrix22.h">
       <Filter>Source\Math</Filter>
     </ClInclude>
@@ -53,6 +50,9 @@
       <Filter>Source\Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\Rect.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
       <Filter>Source\Math</Filter>
     </ClInclude>
   </ItemGroup>

@@ -40,22 +40,40 @@ namespace kiko
 			m_scene->Add(std::move(weapon));
 		}
 
-		transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
-		transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+		//transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
+		//transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
 
+		if ((transform.position.x < 0 || transform.position.x >(float)kiko::g_renderer.GetWidth()) ||
+			(transform.position.y < 0 || transform.position.y >(float)kiko::g_renderer.GetHeight()))
+		{
+			transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
+			transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+
+			m_physicsComponent->SetPosition(transform.position);
+		}
 	}
 
-	void Boss::OnCollisionEnter(Actor* actor)
+	void Boss::OnCollisionEnter(Actor* other)
 	{
+		if (other->tag == "Player" || other->tag == "Weapon")
+		{
+			lives--;
+
+			if (lives <= 0)
+			{
+				destroyed = true;
+				kiko::EventManager::Instance().DispatchEvent("OnBossDeath", 0);
+			}
+		}
+
+		std::cout << "Boss Lives: " << lives << std::endl;
+		
 	}
 
 	void Boss::Read(const json_t& value)
 	{
 		Actor::Read(value);
 		READ_DATA(value, lives);
-		READ_DATA(value, speed);
-		READ_DATA(value, turnRate);
-		READ_DATA(value, fireRate);
 	}
 }
 

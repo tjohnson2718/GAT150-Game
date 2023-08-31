@@ -123,7 +123,7 @@ namespace kiko
 
 		vec2 position = mx.GetTranslation();
 
-		vec2 size = vec2{ source.w, source.h } *mx.GetScale();
+		vec2 size = vec2{ source.w, source.h } * mx.GetScale();
 
 		SDL_Rect dest;
 		dest.x = (int)(position.x - (size.x * origin.x));
@@ -132,7 +132,7 @@ namespace kiko
 		dest.h = (int)(size.y); // scale y determined here
 
 		SDL_Point center{ (int)(size.x * origin.x), (int)(size.y * origin.y) };
-
+		//std::cout << source.x << " " << source.y << " " << source.w << " " << source.h << std::endl;
 		SDL_RenderCopyEx(m_renderer, texture->m_texture, (SDL_Rect*)(&source), &dest, RadiansToDegrees(mx.GetRotation()), &center, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 	}
 }

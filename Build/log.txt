@@ -19,3 +19,4 @@ INFO: Factory.h(78) Prototype Class Registered: Boss
 INFO: Factory.h(78) Prototype Class Registered: Player
 INFO: EventManager.cpp(17) Event subscribed: OnAddPoints
 INFO: EventManager.cpp(17) Event subscribed: OnPlayerDeath
+INFO: EventManager.cpp(17) Event subscribed: OnBossDeath

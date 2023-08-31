@@ -47,6 +47,17 @@ namespace kiko
 		m_body->SetLinearVelocity(VEC2_TO_B2VEC2(velocity));
 	}
 
+	void Box2DPhysicsComponent::SetGravityScale(float scale)
+	{
+		//m_body->SetGravityScale
+	}
+
+	void Box2DPhysicsComponent::SetPosition(const vec2& position)
+	{
+		vec2 worldPosition = PhysicsSystem::Instance().ScreenToWorld(position);
+		m_body->SetTransform(VEC2_TO_B2VEC2(worldPosition), m_owner->transform.rotation);
+	}
+
 	void Box2DPhysicsComponent::Read(const json_t& value)
 	{
 		READ_NAME_DATA(value, "damping", data.damping);

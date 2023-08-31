@@ -58,6 +58,7 @@ int main(int argc, char* argv[])
 			quit = true;
 		}
 		game->Update(kiko::g_time.GetDeltaTime());
+		
 		kiko::g_renderer.SetColor(0, 0, 0, 0); //sets color to black
 		kiko::g_renderer.BeginFrame(); //clears the screen, allows for less static
 		//draw

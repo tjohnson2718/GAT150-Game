@@ -1,11 +1,8 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "SpaceGame.h"
-#include "Framework/Scene.h"
+#include "Framework/Framework.h"
 #include "Renderer/Renderer.h"
-#include "Framework/Emitter.h"
-#include "Framework/Components/CollisionComponent.h"
-#include "Framework/Components/RenderComponent.h"
 
 namespace kiko
 {
@@ -34,22 +31,31 @@ namespace kiko
 	{
 		Actor::Update(dt);
 
+		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
 		Player* player = m_scene->GetActor<Player>();
 		if (player)
 		{
 			kiko::Vector2 direction = player->transform.position - transform.position;
-			transform.rotation = direction.Angle() + kiko::HalfPi;
+			float turnAngle = vec2::SignedAngle(forward, direction.Normalized());
+			m_physicsComponent->ApplyTorque(turnAngle);
+			//transform.rotation = direction.Angle() + kiko::HalfPi;
 		}
 
 
-		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
-		transform.position += forward * speed * speed * kiko::g_time.GetDeltaTime();
+		//transform.position += forward * speed * speed * kiko::g_time.GetDeltaTime();
 
 		m_physicsComponent->ApplyForce(forward * speed);
 
-		transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
-		transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+		//transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
+		//transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+		if ((transform.position.x < 0 || transform.position.x >(float)kiko::g_renderer.GetWidth()) ||
+			(transform.position.y < 0 || transform.position.y >(float)kiko::g_renderer.GetHeight()))
+		{
+			transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
+			transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
 
+			m_physicsComponent->SetPosition(transform.position);
+		}
 	}
 
 	void Enemy::Read(const json_t& value)
@@ -62,7 +68,7 @@ namespace kiko
 
 	void Enemy::OnCollisionEnter(Actor* other)
 	{
-		if (other->tag == "Player")
+		if (other->tag == "Player" || other->tag == "Weapon")
 		{
 			kiko::EventManager::Instance().DispatchEvent("OnAddPoints", 100);
 			//m_game->AddPoints(100);

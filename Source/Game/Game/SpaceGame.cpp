@@ -26,6 +26,7 @@ bool SpaceGame::Initialize()
 	// add events
 	EVENT_SUBSCRIBE("OnAddPoints", SpaceGame::OnAddPoints);
 	EVENT_SUBSCRIBE("OnPlayerDeath", SpaceGame::OnPlayerDeath);
+	EVENT_SUBSCRIBE("OnBossDeath", SpaceGame::OnBossDeath);
 
 	return true;
 }
@@ -42,13 +43,16 @@ void SpaceGame::Update(float dt)
 		m_scene->GetActorByName("Title")->active = true;
 		m_scene->GetActorByName("Score")->active = false;
 		m_scene->GetActorByName("GameOver")->active = false;
-		
+		m_scene->GetActorByName("Win")->active = false;
+		m_scene->GetActorByName("PlayAgain")->active = false;
+		m_scene->GetActorByName("Start")->active = true;
+
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
 			m_state = eState::StartGame;
 			m_scene->GetActorByName("Title")->active = false;
+			m_scene->GetActorByName("Start")->active = false;
 			m_scene->GetActorByName("Score")->active = true;
-			//m_scene->GetActorByName <kiko::Actor >("Background")->active;
 		}
 		break;
 
@@ -57,15 +61,17 @@ void SpaceGame::Update(float dt)
 		//Particle System
 		m_score = 0;
 		m_lives = 3;
+		win = false;
+		exists = false;
 		m_state = eState::StartLevel;
 		break;
 
 	case SpaceGame::eState::StartLevel:
 		m_scene->RemoveAll();
+		exists = false;
 
 		{
 			auto player = INSTANTIATE(Player, "Player");
-			//player->transform = kiko::Transform{ { 400, 300 }, 0, 1 };
 			player->Initialize();
 			m_scene->Add(std::move(player));
 
@@ -100,7 +106,7 @@ void SpaceGame::Update(float dt)
 			}
 		}
 
-		if (m_spawnTimer >= m_spawnTime)
+		if (m_spawnTimer >= m_spawnTime && exists == false)
 		{
 			auto enemy = INSTANTIATE(Enemy, "Enemy");
 			enemy->Initialize();
@@ -109,39 +115,48 @@ void SpaceGame::Update(float dt)
 			m_spawnTimer = 0;
 		}
 
-		if (m_score > 999)
+		if (m_score >= 100 && exists == false)
 		{
 			auto boss = INSTANTIATE(Boss, "Boss");
 			boss->Initialize();
 			m_scene->Add(std::move(boss));
+
+			exists = true;
 		}
 		
 		break;
 
 	case SpaceGame::eState::PlayerDead:
-		if (m_lives <= 0) m_state = eState::GameOver;
-		else m_state = eState::StartLevel;
-
-		if (m_lives == 0)
+		if (m_lives <= 0 || win == true)
 		{
 			m_state = eState::GameOver;
 		}
-		else
-		{
-			m_state = eState::StartLevel;
-		}
+
+		else m_state = eState::StartLevel;
 
 		break;
 
 	case SpaceGame::eState::GameOver:
-		m_scene->GetActorByName("GameOver")->active = false;
+		if (win == true)
+		{
+			m_scene->GetActorByName("Win")->active = true;
+			m_scene->GetActorByName("PlayAgain")->active = true;
+			if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_P))
+			{
+				m_state = eState::Title;
+			}
+		}
+		else
+		{
+			m_scene->GetActorByName("GameOver")->active = true;
+		}
+		
 		break;
 
 	default:
 		break;
 	}
-	
-	//m_scoreText->Create(kiko::g_renderer, std::to_string(m_score), { 1, 1, 1, 1 });
+
 	m_scene->Update(dt);
 }
 
@@ -162,6 +177,11 @@ void SpaceGame::OnAddPoints(const kiko::Event& event)
 void SpaceGame::OnPlayerDeath(const kiko::Event& event)
 {
 	m_lives--;
+	m_state = eState::PlayerDead;
+}
 
+void SpaceGame::OnBossDeath(const kiko::Event& event)
+{
+	win = true;
 	m_state = eState::PlayerDead;
 }

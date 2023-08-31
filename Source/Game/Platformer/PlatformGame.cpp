@@ -1,5 +1,4 @@
 #include "PlatformGame.h"
-
 #include "Core/Core.h"
 #include "Framework/Framework.h"
 #include "Audio/AudioSystem.h"
@@ -29,17 +28,17 @@ void PlatformGame::Update(float dt)
 	{
 	case PlatformGame::eState::Title:
 	{
-		auto actor = INSTANTIATE(Actor, "Crate");
-		actor->transform.position = { kiko::randomf(kiko::g_renderer.GetWidth(), 100) };
-		actor->Initialize();
-		m_scene->Add(std::move(actor));
+		//auto actor = INSTANTIATE(Actor, "Crate");
+		//actor->transform.position = { kiko::randomf(kiko::g_renderer.GetWidth(), 100) };
+		//actor->Initialize();
+		//m_scene->Add(std::move(actor));
 	}
-		m_scene->GetActorByName("Title")->active = true;
+		//m_scene->GetActorByName("Title")->active = true;
 
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
 			m_state = eState::StartGame;
-			m_scene->GetActorByName("Title")->active = false;
+			//m_scene->GetActorByName("Title")->active = false;
 			//m_scene->GetActorByName <kiko::Actor >("Background")->active;
 		}
 		break;
