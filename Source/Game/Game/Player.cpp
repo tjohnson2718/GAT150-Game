@@ -46,8 +46,6 @@ namespace kiko
 		float thrust = 0;
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_W)) thrust = 1;
 
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_S)) thrust = -1;
-
 		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
 
 		m_physicsComponent->ApplyForce(forward * speed * thrust);
@@ -63,16 +61,39 @@ namespace kiko
 
 			m_physicsComponent->SetPosition(transform.position);
 		}
+		
+		fireTimer += dt;
+		superTimer += dt;
 
-		// fire weapon
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
+ 		
+			// fire weapon
+ 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
 			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 		{
-			auto weapon = INSTANTIATE(Weapon, "Rocket");
-			weapon->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
-			weapon->Initialize();
-			
-			m_scene->Add(std::move(weapon));
+			if (fireTimer >= fireRate)
+			{
+				auto weapon = INSTANTIATE(Weapon, "Rocket");
+				weapon->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+				weapon->Initialize();
+				m_scene->Add(std::move(weapon));
+
+				fireTimer = 0;
+			}
+		}
+
+		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_F) &&
+			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_F))
+		{
+			if (superTimer >= superRate)
+			{
+				auto super = INSTANTIATE(Weapon, "Super");
+				super->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+				super->Initialize();
+				m_scene->Add(std::move(super));
+
+				
+				superTimer = 0;
+			}
 		}
 	} 
 
@@ -89,6 +110,11 @@ namespace kiko
 			destroyed = true;
 			kiko::EventManager::Instance().DispatchEvent("OnPlayerDeath", 0);
 		}
+
+		if (other->tag == "PowerUp")
+		{
+			kiko::EventManager::Instance().DispatchEvent("OnAddLives", 0);
+		}
 	}
 
 	void Player::Read(const json_t& value)
@@ -96,6 +122,8 @@ namespace kiko
 		Actor::Read(value);
 		READ_DATA(value, speed);
 		READ_DATA(value, turnRate);
+		READ_DATA(value, fireRate);
+		READ_DATA(value, superRate);
 	}
 }
 

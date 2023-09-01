@@ -68,7 +68,7 @@ namespace kiko
 
 	void Enemy::OnCollisionEnter(Actor* other)
 	{
-		if (other->tag == "Player" || other->tag == "Weapon")
+		if (other->tag == "Weapon" || other->tag == "Super")
 		{
 			kiko::EventManager::Instance().DispatchEvent("OnAddPoints", 100);
 			//m_game->AddPoints(100);
@@ -93,6 +93,12 @@ namespace kiko
 			emitter->lifespan = 1.0f;
 
 			m_scene->Add(std::move(emitter));
+		}
+
+		if (other->tag == "Player")
+		{
+			kiko::EventManager::Instance().DispatchEvent("OnRemovePoints", 0);
+			destroyed = true;
 		}
 	}
 }

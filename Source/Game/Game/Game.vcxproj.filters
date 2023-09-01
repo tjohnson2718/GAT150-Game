@@ -28,6 +28,9 @@
     <ClCompile Include="Boss.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -43,6 +46,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Boss.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

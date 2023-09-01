@@ -1,6 +1,7 @@
 INFO: Factory.h(71) Class Registered: Boss
 INFO: Factory.h(71) Class Registered: Enemy
 INFO: Factory.h(71) Class Registered: Player
+INFO: Factory.h(71) Class Registered: PowerUp
 INFO: Factory.h(71) Class Registered: Weapon
 INFO: Factory.h(71) Class Registered: TextRenderComponent
 INFO: Factory.h(71) Class Registered: SpriteComponent
@@ -13,10 +14,13 @@ INFO: Factory.h(71) Class Registered: Box2DCollisionComponent
 INFO: Factory.h(71) Class Registered: Actor
 INFO: Main.cpp(47) Initialize Engine...
 INFO: Factory.h(78) Prototype Class Registered: Rocket
-INFO: Factory.h(78) Prototype Class Registered: LaserBeam
+INFO: Factory.h(78) Prototype Class Registered: Super
+INFO: Factory.h(78) Prototype Class Registered: PowerUp
 INFO: Factory.h(78) Prototype Class Registered: Enemy
 INFO: Factory.h(78) Prototype Class Registered: Boss
 INFO: Factory.h(78) Prototype Class Registered: Player
 INFO: EventManager.cpp(17) Event subscribed: OnAddPoints
+INFO: EventManager.cpp(17) Event subscribed: OnRemovePoints
 INFO: EventManager.cpp(17) Event subscribed: OnPlayerDeath
 INFO: EventManager.cpp(17) Event subscribed: OnBossDeath
+INFO: EventManager.cpp(17) Event subscribed: OnAddLives

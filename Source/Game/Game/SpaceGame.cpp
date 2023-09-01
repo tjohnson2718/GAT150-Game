@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Boss.h"
+#include "PowerUp.h"
 
 #include "Core/Core.h"
 
@@ -15,6 +16,7 @@ bool SpaceGame::Initialize()
 	//Text
 	m_font = GET_RESOURCE(kiko::Font, "spacegame/fonts/font.ttf", 24);
 
+	
 	// Audio
 	kiko::g_audioSystem.AddAudio("shoot", "spacegame/audio/Laser2.wav");
 
@@ -25,8 +27,10 @@ bool SpaceGame::Initialize()
 
 	// add events
 	EVENT_SUBSCRIBE("OnAddPoints", SpaceGame::OnAddPoints);
+	EVENT_SUBSCRIBE("OnRemovePoints", SpaceGame::OnRemovePoints)
 	EVENT_SUBSCRIBE("OnPlayerDeath", SpaceGame::OnPlayerDeath);
 	EVENT_SUBSCRIBE("OnBossDeath", SpaceGame::OnBossDeath);
+	EVENT_SUBSCRIBE("OnAddLives", SpaceGame::OnAddLives);
 
 	return true;
 }
@@ -57,8 +61,6 @@ void SpaceGame::Update(float dt)
 		break;
 
 	case SpaceGame::eState::StartGame:
-
-		//Particle System
 		m_score = 0;
 		m_lives = 3;
 		win = false;
@@ -82,29 +84,8 @@ void SpaceGame::Update(float dt)
 
 	case SpaceGame::eState::Game:
 		m_spawnTimer += dt;
-
-		//Emitter
-		{
-			if (kiko::g_inputSystem.GetKeyDown(SDL_BUTTON_LEFT))
-			{
-				kiko::EmitterData data;
-				data.burst = true;
-				data.burstCount = 100;
-				data.spawnRate = 200;
-				data.angle = 0;
-				data.angleRange = kiko::Pi;
-				data.lifetimeMin = 0.5f;
-				data.lifetimeMin = 1.5f;
-				data.speedMin = 50;
-				data.speedMax = 250;
-				data.damping = 0.5f;
-				data.color = kiko::Color{ 1, 0, 0, 1 };
-				kiko::Transform transform{ { kiko::g_inputSystem.GetMousePosition() }, 0, 1 };
-				auto emitter = std::make_unique<kiko::Emitter>(transform, data);
-				emitter->lifespan = 1.0f;
-				m_scene->Add(std::move(emitter));
-			}
-		}
+		m_powerUpTimer += dt;
+		m_damageTimer += dt;
 
 		if (m_spawnTimer >= m_spawnTime && exists == false)
 		{
@@ -123,6 +104,16 @@ void SpaceGame::Update(float dt)
 
 			exists = true;
 		}
+
+		if (m_powerUpTimer >= m_powerUpSpawnTimer)
+		{
+			auto powerUp = INSTANTIATE(PowerUp, "PowerUp");
+			powerUp->Initialize();
+			m_scene->Add(std::move(powerUp));
+
+			m_powerUpTimer = 0;
+		}
+		
 		
 		break;
 
@@ -174,9 +165,21 @@ void SpaceGame::OnAddPoints(const kiko::Event& event)
 	std::cout << m_score << std::endl;
 }
 
+void SpaceGame::OnRemovePoints(const kiko::Event& event)
+{
+	m_score -= 100;
+}
+
 void SpaceGame::OnPlayerDeath(const kiko::Event& event)
 {
-	m_lives--;
+	if (m_damageTimer >= m_damageTime)
+	{
+		m_lives--;
+
+		m_damageTimer = 0;
+	}
+
+	std::cout << "Player Lives: " << m_lives << std::endl;
 	m_state = eState::PlayerDead;
 }
 
@@ -184,4 +187,11 @@ void SpaceGame::OnBossDeath(const kiko::Event& event)
 {
 	win = true;
 	m_state = eState::PlayerDead;
+}
+
+void SpaceGame::OnAddLives(const kiko::Event& event)
+{
+	m_lives += 1;
+
+	std::cout << "Player Lives: " << m_lives << std::endl;
 }

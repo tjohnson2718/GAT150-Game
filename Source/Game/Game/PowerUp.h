@@ -1,20 +1,17 @@
 #pragma once
-#include "Framework/Framework.h"
-
+#include "Framework/framework.h"
 namespace kiko
 {
-	class Weapon : public Actor
+	class PowerUp : public Actor
 	{
 	public:
-		CLASS_DECLARATION(Weapon);
+		CLASS_DECLARATION(PowerUp);
 
 		bool Initialize() override;
 		void Update(float dt) override;
-		void OnCollisionEnter(Actor* other);
+		void OnCollisionEnter(Actor* other) override;
 
 	private:
-		float speed = 0;
 		kiko::PhysicsComponent* m_physicsComponent = nullptr;
 	};
 }
-

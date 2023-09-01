@@ -31,17 +31,16 @@ namespace kiko
 	{
 		Actor::Update(dt);
 
-		if (lives == 80 || lives == 60 || lives == 40 || lives == 20)
+		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
+		Player* player = m_scene->GetActor<Player>();
+		if (player)
 		{
-			auto weapon = INSTANTIATE(Weapon, "LaserBeam");
-			weapon->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
-			weapon->Initialize();
-
-			m_scene->Add(std::move(weapon));
+			kiko::Vector2 direction = player->transform.position - transform.position;
+			float turnAngle = vec2::SignedAngle(forward, direction.Normalized());
+			m_physicsComponent->ApplyTorque(turnAngle);
 		}
 
-		//transform.position.x = kiko::Wrap(transform.position.x, (float)kiko::g_renderer.GetWidth());
-		//transform.position.y = kiko::Wrap(transform.position.y, (float)kiko::g_renderer.GetHeight());
+		m_physicsComponent->ApplyForce(forward * speed);
 
 		if ((transform.position.x < 0 || transform.position.x >(float)kiko::g_renderer.GetWidth()) ||
 			(transform.position.y < 0 || transform.position.y >(float)kiko::g_renderer.GetHeight()))
@@ -66,6 +65,17 @@ namespace kiko
 			}
 		}
 
+		if (other->tag == "Super")
+		{
+			lives -= 20;
+
+			if (lives <= 0)
+			{
+				destroyed = true;
+				kiko::EventManager::Instance().DispatchEvent("OnBossDeath", 0);
+			}
+		}
+
 		std::cout << "Boss Lives: " << lives << std::endl;
 		
 	}
@@ -74,6 +84,8 @@ namespace kiko
 	{
 		Actor::Read(value);
 		READ_DATA(value, lives);
+		READ_DATA(value, speed);
+		READ_DATA(value, turnRate);
 	}
 }
 

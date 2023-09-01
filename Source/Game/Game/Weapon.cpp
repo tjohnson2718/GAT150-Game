@@ -30,9 +30,9 @@ namespace kiko
 
 	}
 
-	void Weapon::OnCollision(Actor* other)
+	void Weapon::OnCollisionEnter(Actor* other)
 	{
-		if (other->tag != tag)
+		if (other->tag != tag && other->tag != "Player")
 		{
 			destroyed = true;
 		}

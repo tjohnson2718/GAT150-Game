@@ -151,27 +151,27 @@
 				{
 					"type": "Box2DCollisionComponent",
 					"size": [ 32, 32 ],
-					"isTrigger": false,
+					"isTrigger": true,
 					"constraintAngle": true
 				}
 			]
 		},
 		{
 			"type": "Weapon",
-			"name": "LaserBeam",
-			"tag": "Boss",
+			"name": "Super",
 			"prototype": true,
-			"lifespan": 5,
+			"tag": "Super",
+			"lifespan": 3,
 			"transform": {
 				"position": [ 400, 300 ],
 				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 1,
+			"speed": 3,
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "spacegame/textures/boss_weapon.png"
+					"textureName": "spacegame/textures/super.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",
@@ -181,9 +181,34 @@
 				},
 				{
 					"type": "Box2DCollisionComponent",
-					"size": [ 32, 32 ],
-					"isTrigger": false,
+					"size": [ 80, 80 ],
+					"isTrigger": true,
 					"constraintAngle": true
+				}
+			]
+		},
+		{
+			"type": "PowerUp",
+			"name": "PowerUp",
+			"prototype": true,
+			"tag": "PowerUp",
+			"transform": {
+				"position": [ 400, 100 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "spacegame/textures/PowerUp.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
 				}
 			]
 		},
@@ -227,18 +252,22 @@
 				"rotation": 0
 			},
 			"lives": 100,
+			"speed": 1,
+			"turnRate": 0.25,
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "spacegame/textures/boss.png"
+					"textureName": "spacegame/textures/alien_boss.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
 					"gravityScale": 0
 				},
 				{
 					"type": "Box2DCollisionComponent",
-					"size": [ 64, 128 ]
+					"size": [ 80, 128 ]
 				}
 			]
 		},
@@ -254,6 +283,8 @@
 			},
 			"speed": 4,
 			"turnRate": 0.15,
+			"fireRate": 1.0,
+			"superRate": 5.0,
 			"components": [
 				{
 					"type": "SpriteComponent",

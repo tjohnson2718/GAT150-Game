@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 	//our window setup
 	kiko::g_renderer.Initialize();
 	kiko::g_renderer.CreateWindow("CSC196", 800, 600);
-	
+
 	kiko::g_inputSystem.Initialize();
 	kiko::g_audioSystem.Initialize();
 	kiko::PhysicsSystem::Instance().Initialize();
@@ -104,6 +104,7 @@ int main(int argc, char* argv[])
 		{
 			quit = true;
 		}
+
 		kiko::PhysicsSystem::Instance().Update(kiko::g_time.GetDeltaTime());
 
 		game->Update(kiko::g_time.GetDeltaTime());
@@ -111,22 +112,10 @@ int main(int argc, char* argv[])
 		kiko::g_renderer.SetColor(0, 0, 0, 0); //sets color to black
 		kiko::g_renderer.BeginFrame(); //clears the screen, allows for less static
 		//draw
+		kiko::g_particleSystem.Draw(kiko::g_renderer);
 		game->Draw(kiko::g_renderer);
 
-		//for (auto& star : stars) //literally just made space screensaver
-		//{
-		//	star.Update();
-
-		//	if (star.m_pos.x >= kiko::g_renderer.GetWidth()) star.m_pos.x = 0;
-		//	if (star.m_pos.y >= kiko::g_renderer.GetHeight()) star.m_pos.y = 0;
-		//	kiko::g_renderer.SetColor(kiko::random(256), kiko::random(256), 150, 255);
-		//	kiko::g_renderer.DrawPoint(star.m_pos.x, star.m_pos.y);
-		//}
-
-
-		//kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
-
-		kiko::g_particleSystem.Draw(kiko::g_renderer);
+		
 
 		kiko::g_renderer.EndFrame();
 	}

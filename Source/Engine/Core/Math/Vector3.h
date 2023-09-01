@@ -11,7 +11,7 @@ namespace kiko
 	public:
 		Vector3() : x{ 0 }, y{ 0 }, z{ 0 } {}
 		Vector3(float v) { x = 0; y = 0; z = 0; }
-		Vector3(float x, float y, float g) { this->x = x; this->y = y; this->z = z; }
+		Vector3(float x, float y, float z) { this->x = x; this->y = y; this->z = z; }
 		Vector3(int x, int y, int g) { this->x = (float)x; this->y = (float)y; this->z = (float)g; }
 
 		float operator [] (size_t index) const { return (&x)[index]; }

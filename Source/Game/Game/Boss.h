@@ -14,6 +14,8 @@ namespace kiko
 
 	public:
 		int lives = 0;
+		float speed = 0;
+		float turnRate = 0;
 		kiko::PhysicsComponent* m_physicsComponent = nullptr;
 	};
 }
